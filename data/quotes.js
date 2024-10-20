@@ -17,6 +17,10 @@ sind wir verloren, doch nicht allein.`
     },
     {
         source: `Leonhard Mondsturm — das Herz des Waldes`,
+        text: `Wir sind Hüter des Waldes, nicht seine Herrscher. Unser Weg führt nicht über den Wald hinweg, sondern durch ihn hindurch, im Einklang mit seinen Rhythmen und Geheimnissen.`
+    },
+    {
+        source: `Leonhard Mondsturm — das Herz des Waldes`,
         text: `Dein Fleisch wird modern, dein Atem stockt,
 Wo dich der Schatten des Waldes lockt.
 Dein Herz verstummt, dein Geist verirrt,
