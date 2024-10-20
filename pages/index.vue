@@ -15,7 +15,7 @@ const sortedBooks = books.sort((a, b) => new Date(b.published) - new Date(a.publ
             <div class="flex gap-4 flex-col md:flex-row">
                 <n-button variant="white" link="/books">
                     <Icon name="tabler:book" class="mr-4 w-5 h-5"></Icon>
-                    <p>alle Bücher</p>
+                    <p>Bücher</p>
                 </n-button>
                 <n-button variant="white-outline" link="/contact">
                     <Icon name="tabler:mail" class="mr-4 w-5 h-5"></Icon>
