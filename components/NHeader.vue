@@ -24,7 +24,7 @@ const links = [
     },
 ]
 
-const menuOpen = ref(true)
+const menuOpen = ref(false)
 </script>
 
 <template>
@@ -49,7 +49,7 @@ const menuOpen = ref(true)
             <Icon name="tabler:menu" class="w-6 h-6 text-black cursor-pointer" @click="menuOpen = true" />
         </div>
         <div :class="['fixed top-0 left-0 z-10', menuOpen ? 'block' : 'hidden']">
-            <Icon name="tabler:x" @click="menuOpen = false" class="fixed cursor-pointer z-20 top-8 right-8 text-black w-8 h-8" />
+            <Icon name="tabler:x" @click="menuOpen = false" :class="['cursor-pointer z-20 top-8 right-8 text-black w-8 h-8', menuOpen ? 'flex' : 'hidden']" />
             <div :class="['md:hidden flex-col text-2xl gap-4 fixed pt-32 w-screen h-screen bg-white left-0 top-0 place-items-center', menuOpen ? 'flex' : 'hidden']">
                 <nuxt-link
                     v-for="link of links"
