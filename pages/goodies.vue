@@ -27,12 +27,13 @@ const icons = {
     <n-section class="bg-gray-100">
         <h2 class="text-4xl font-bold mb-32 text-center">Zusätzliche Materialien</h2>
         
-        <div class="flex gap-8 justify-center">
+        <div class="flex flex-wrap gap-8 justify-center">
             <a v-for="goodie in goodies" :href="goodie.link">
                 <n-card
                     :title="goodie.title"
                     :link="goodie.link"
                     :icon="icons[goodie.type]"
+                    class=min-w-[300px]
                 >
                     <h4 class="font-bold opacity-70 mb-2">Serie</h4>
                     <p>{{ goodie.series }}</p>
