@@ -53,7 +53,7 @@ const sortedBooks = books.sort((a, b) => new Date(b.published) - new Date(a.publ
         <p>Noah Horlacher ist Fantasy-Autor und Schöpfer der „Leonhard Mondsturm“-Serie. Schon seit seiner Kindheit erforscht er in seinen Geschichten die fantastischen Welten, die in seinem Kopf entstehen. Mit einem einzigartigen Stil verbindet Noah Horlacher phantasievolle Abenteuer mit tiefgründigen, philosophischen Elementen. Seine größten literarischen Einflüsse sind Hermann Hesse und Walter Moers, deren Werke ihn inspiriert haben, die Leser auf Reisen in außergewöhnliche Welten mitzunehmen.<br><br>
             Durch seine Texte möchte er Menschen dazu ermutigen, ihre eigene Fantasie zu entfalten und neue Dimensionen der Vorstellungskraft zu entdecken. Als passionierter Gitarrenspieler und Naturfreund schöpft er seine Kreativität oft aus der Ruhe am Lagerfeuer oder beim Vögelbeobachten. Seine Geschichten richten sich an all jene, die das Abenteuer und die Flucht in fantastische Welten suchen.</p>
 
-        <div class="flex flex-col mt-8 gap-2">
+        <div class="flex flex-col mt-12 gap-2">
             <div class="flex gap-x-4 items-center">
                 <Icon name="tabler:globe" class="w-6 h-6" />
                 <p class="mr-4">Immersive Welten</p>
