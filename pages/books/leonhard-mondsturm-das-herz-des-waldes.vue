@@ -15,7 +15,7 @@ const reviews = []
 
 <template>
     <n-section class="bg-gray-100">
-        <img :src="book.img" class="mx-auto max-h-[700px] shadow-2xl rounded-xl mb-16" />
+        <img :src="book.img" class="mx-auto mt-12 max-h-[700px] shadow-2xl rounded-xl mb-16" />
         <h1 class="text-4xl text-center font-bold mb-4">{{ book.title }}</h1>
         <h2 class="mb-4 text-center">{{ book.subtitle }}</h2>
         <h3 class="opacity-70 font-bold text-center">{{ formatDate(book.published) }}</h3>
@@ -41,7 +41,7 @@ const reviews = []
         <h3 class="text-xl mb-4 font-bold min-w-96">Rezensionen</h3>
         <div class="flex items-center mb-8">
             <Icon class="mr-4 w-5 h-5" name="tabler:info-circle" />
-            <p>Rezensionen sind aus goodreads.com handerlesen</p>
+            <p>von goodreads.com</p>
         </div>
 
         <n-button link="https://www.goodreads.com/book/show/220572266-leonhard-mondsturm">

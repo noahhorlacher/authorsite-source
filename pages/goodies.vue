@@ -25,7 +25,7 @@ const icons = {
 
 <template>
     <n-section class="bg-gray-100">
-        <h2 class="text-4xl font-bold mb-32 text-center">Zusätzliche Materialien</h2>
+        <h2 class="text-4xl font-bold mt-16 mb-32 text-center">Zusätzliche Materialien</h2>
         
         <div class="flex flex-wrap gap-8 justify-center">
             <a v-for="goodie in goodies" :href="goodie.link">

@@ -6,16 +6,16 @@ const sortedBooks = books.sort((a, b) => new Date(b.published) - new Date(a.publ
 
 <template>
     <div class="min-h-screen relative bg-black bg-cover bg-center bg-fixed"
-        style="background-image: linear-gradient(transparent, rgba(0,0,0,0.7)), url('/img/lyranthia_map.jpg')">
-        <n-section class="text-white absolute left-0 bottom-0">
-            <h2 class="text-4xl font-bold mb-4">Willkommen in meiner Welt</h2>
+        style="background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url('/img/lyranthia_map.jpg')">
+        <n-section class="text-white absolute left-0 bottom-32">
+            <h2 class="text-2xl md:text-4xl font-bold mb-4">Willkommen in meiner Welt</h2>
             <p class="mb-8 max-w-[400px]">Tauche ein in fesselnde Geschichten, die dich in neue Welten transportieren und deine
                 Fantasie
                 entfachen.</p>
-            <div class="flex gap-x-4">
+            <div class="flex gap-4 flex-col md:flex-row">
                 <n-button variant="white" link="/books">
                     <Icon name="tabler:book" class="mr-4 w-5 h-5"></Icon>
-                    <p>Bücher ansehen</p>
+                    <p>alle Bücher</p>
                 </n-button>
                 <n-button variant="white-outline" link="/contact">
                     <Icon name="tabler:mail" class="mr-4 w-5 h-5"></Icon>
@@ -70,7 +70,7 @@ const sortedBooks = books.sort((a, b) => new Date(b.published) - new Date(a.publ
 
         <n-button variant="black" class="mt-12" link="https://www.goodreads.com/author/show/52548579.Noah_Horlacher">
             <Icon name="tabler:link" class="mr-4 w-5 h-5"></Icon>
-            <p>Noah Horlacher auf goodreads.com</p>
+            <p>goodreads.com</p>
         </n-button>
     </n-section>
 </template>
