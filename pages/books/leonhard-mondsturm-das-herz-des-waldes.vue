@@ -28,24 +28,23 @@ const reviews = []
     </n-section>
 
     <n-section class="!py-6">
-        <h3 class="text-lg md:text-xl mb-4 font-bold w-full whitespace-normal">Kauflinks & Leseprobe</h3>
+        <h3 class="text-lg md:text-xl mb-4 font-bold w-full whitespace-normal">Leseprobe</h3>
+        <p>Die ersten 20% des Buches als Leseprobe.</p>
+        <div class="pt-8 flex gap-4 flex-wrap">
+            <n-button variant="black" download="/leseproben/leonhard_mondsturm_ das_herz_des_waldes_leseprobe.epub">
+                <Icon class="mr-4 w-5 h-5" name="tabler:download" />
+                <p>Download</p>
+            </n-button>
+        </div>
+    </n-section>
+
+    <n-section class="!py-6">
+        <h3 class="text-lg md:text-xl mb-4 font-bold w-full whitespace-normal">Kauflinks</h3>
         <p>Als eBook, gebundenes Buch und Taschenbuch erhältlich.</p>
         <div class="pt-8 flex gap-4 flex-wrap">
             <n-button variant="black" :link="book.amazonUrl">
                 <Icon class="mr-4 w-5 h-5" name="tabler:brand-amazon" />
                 <p>auf&nbsp;Amazon</p>
-            </n-button>
-            <n-button variant="black" :link="book.orellUrl">
-                <Icon class="mr-4 w-5 h-5" name="tabler:link" />
-                <p>auf&nbsp;Orell Füssli</p>
-            </n-button>
-            <n-button variant="black" :link="book.amazonUrl">
-                <Icon class="mr-4 w-5 h-5" name="tabler:link" />
-                <p>auf&nbsp;Tolino</p>
-            </n-button>
-            <n-button variant="black" :link="book.amazonUrl">
-                <Icon class="mr-4 w-5 h-5" name="tabler:link" />
-                <p>auf&nbsp;Skoobe</p>
             </n-button>
         </div>
     </n-section>
