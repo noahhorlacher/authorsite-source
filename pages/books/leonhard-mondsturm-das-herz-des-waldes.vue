@@ -19,6 +19,7 @@ const reviews = []
         <h1 class="text-2xl md:text-4xl text-center font-bold mb-4">{{ book.title }}</h1>
         <h2 class="mb-4 text-center">{{ book.subtitle }}</h2>
         <h3 class="opacity-70 font-bold text-center">{{ formatDate(book.published) }}</h3>
+        <n-rating :rating="book.rating" class="text-center mt-8" />
     </n-section>
 
     <n-section class="!pb-6">
@@ -28,11 +29,23 @@ const reviews = []
 
     <n-section class="!py-6">
         <h3 class="text-lg md:text-xl mb-4 font-bold w-full whitespace-normal">Kauflinks & Leseprobe</h3>
-        <p>Auf Amazon als eBook, gebundenes Buch und Taschenbuch erhältlich.</p>
+        <p>Als eBook, gebundenes Buch und Taschenbuch erhältlich.</p>
         <div class="pt-8 flex gap-4 flex-wrap">
             <n-button variant="black" :link="book.amazonUrl">
                 <Icon class="mr-4 w-5 h-5" name="tabler:brand-amazon" />
                 <p>auf&nbsp;Amazon</p>
+            </n-button>
+            <n-button variant="black" :link="book.orellUrl">
+                <Icon class="mr-4 w-5 h-5" name="tabler:link" />
+                <p>auf&nbsp;Orell Füssli</p>
+            </n-button>
+            <n-button variant="black" :link="book.amazonUrl">
+                <Icon class="mr-4 w-5 h-5" name="tabler:link" />
+                <p>auf&nbsp;Tolino</p>
+            </n-button>
+            <n-button variant="black" :link="book.amazonUrl">
+                <Icon class="mr-4 w-5 h-5" name="tabler:link" />
+                <p>auf&nbsp;Skoobe</p>
             </n-button>
         </div>
     </n-section>
@@ -43,7 +56,7 @@ const reviews = []
             <Icon class="mr-4 w-5 h-5" name="tabler:info-circle" />
             <p>von <nuxt-link class="underline" to="https://www.goodreads.com/book/show/220572266-leonhard-mondsturm">goodreads.com</nuxt-link></p>
         </div>
-
+        <n-rating :rating="book.rating" />
         <div class="py-8">
             <div class="italic" v-if="reviews.length == 0">
                 Es existieren noch keine Rezensionen. <nuxt-link to="https://www.goodreads.com/book/show/220572266-leonhard-mondsturm" class="underline">Schreibe das erste Review</nuxt-link>

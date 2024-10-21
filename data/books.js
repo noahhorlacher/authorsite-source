@@ -1,14 +1,22 @@
 export const books = [
     {
         id: 'leonhard-mondsturm-die-rache-des-udohr',
+        title: 'Gedanken und Gedichte',
+        subtitle: 'von Noah Horlacher',
+        description: 'Eine Sammlung meiner Gedichte und Gedanken. Sie handelt von Raum, Zeit, Traum und Licht.',
+        shortDescription: 'Eine Sammlung meiner Gedichte.',
+        wip: true,
+        rating: null
+    },
+    {
+        id: 'leonhard-mondsturm-die-rache-des-udohr',
         title: 'Leonhard Mondsturm',
         subtitle: 'Die Rache des Udohr',
         description: 'Leonhard Mondsturm stellt sich einem Gott.',
         shortDescription: 'Leonhard Mondsturm stellt sich einem Gott.',
         seriesDescription: 'Teil 2 der Leonhard Mondsturm Serie',
-        amazonUrl: 'https://www.amazon.de/gp/product/B0DKC3HXVJ',
-        detailsUrl: '/books/leonhard-mondsturm-das-herz-des-waldes',
         wip: true,
+        rating: null
     },
     {
         id: 'leonhard-mondsturm-das-herz-des-waldes',
@@ -20,6 +28,7 @@ export const books = [
         img: '/covers/eBook_cover.jpg',
         amazonUrl: 'https://www.amazon.de/gp/product/B0DKC3HXVJ',
         detailsUrl: '/books/leonhard-mondsturm-das-herz-des-waldes',
-        published: '2024-10-19'
+        published: '2024-10-19',
+        rating: null
     },
 ]

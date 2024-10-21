@@ -1,7 +1,12 @@
 <script setup>
 import { books } from '~/data/books'
 
-const sortedBooks = books.sort((a, b) => new Date(b.published) - new Date(a.published));
+const wipBooks = books.filter(b => b.wip)
+const finishedBooks = books.filter(b => !b.wip)
+
+const sortedFinishedBooks = finishedBooks.sort((a, b) => new Date(b.published) - new Date(a.published));
+
+const sortedBooks = [...sortedFinishedBooks, ...wipBooks]
 </script>
 
 <template>
@@ -25,7 +30,7 @@ const sortedBooks = books.sort((a, b) => new Date(b.published) - new Date(a.publ
 
     <n-section class="bg-gray-100">
         <h2 class="text-4xl font-bold mb-4 text-center">Spotlight</h2>
-        <div class="flex justify-center py-16 gap-16 flex-wrap">
+        <div class="flex justify-center py-16 gap-16 flex-wrap grow-0 shrink-0">
             <n-book v-for="book in sortedBooks.slice(0, 3)" :book="book" />
         </div>
         <div class="w-auto flex justify-center" v-if="sortedBooks.length > 3">
