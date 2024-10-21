@@ -14,6 +14,7 @@ import { quotes } from '~/data/quotes'
                     «{{  quote.text }}»
                 </blockquote>
                 <figcaption class="mt-6">
+                    <cite class="italic text-md text-gray-600" v-if="quote.speaker">{{ quote.speaker }}</cite>
                     <div class="flex-col md:flex-row">
                         <cite class="italic text-sm text-gray-600">{{ quote.source }}</cite>
                     </div>
