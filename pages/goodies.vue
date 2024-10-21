@@ -2,25 +2,19 @@
 const goodies = [
     {
         title: 'Landkarte Lyranthia',
-        type: 'map',
+        icon: 'tabler:compass',
         series: 'Leonhard Mondsturm',
-        link: '/goodies/maps/lyranthia.jpg'
+        link: '/goodies/maps/lyranthia.jpg',
+        type: 'Landkarte'
     },
     {
         title: 'Landkarte Eichenthal',
-        type: 'map',
+        icon: 'tabler:compass',
         series: 'Leonhard Mondsturm',
-        link: '/goodies/maps/eichenthal.jpg'
+        link: '/goodies/maps/eichenthal.jpg',
+        type: 'Landkarte'
     }
 ]
-
-const tags = {
-    'map': 'Landkarte',
-}
-
-const icons = {
-    'map': 'tabler:compass'
-}
 </script>
 
 <template>
@@ -32,7 +26,7 @@ const icons = {
                 <n-card
                     :title="goodie.title"
                     :link="goodie.link"
-                    :icon="icons[goodie.type]"
+                    :icon="goodie.icon"
                     class=min-w-[300px]
                 >
                     <h4 class="font-bold opacity-70 mb-2">Serie</h4>
@@ -40,7 +34,7 @@ const icons = {
                     
                     <h4 class="font-bold opacity-70 mt-4 mb-2">Typ</h4>
                     <div class="bg-gray-100 rounded-md inline-block px-3 py-1">
-                        <p>{{ tags[goodie.type] }}</p>
+                        <p>{{ goodie.type }}</p>
                     </div>
                 </n-card>
             </a>

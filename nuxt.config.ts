@@ -7,8 +7,4 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image'
   ],
-  icon: {
-    provider: 'iconify',
-    serverBundle: false,
-  },
 })
