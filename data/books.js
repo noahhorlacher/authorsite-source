@@ -25,7 +25,7 @@ export const books = [
         description: 'Leonhard Mondsturm, ein junger Schmied, begibt sich in den verbotenen Wald, in dem nichts ist, wie es scheint. Zusammen mit seiner Langhaarratte Flitz und seiner besten Freundin Sarah muss er sich mehreren philosophischen Herausforderungen stellen, um sein Dorf zu retten.',
         shortDescription: 'Leonhard Mondsturm, ein junger Schmied, wagt sich in den verbotenen Wald. Dort muss er mit Hilfe seines neuen Gefährten philosophische Rätsel lösen, um ihr Dorf zu retten.',
         seriesDescription: 'Teil 1 der Leonhard Mondsturm Serie',
-        img: '/covers/eBook_cover.jpg',
+        img: '/covers/leonhard_mondsturm_das_herz_des_waldes.jpg',
         amazonUrl: 'https://www.amazon.de/gp/product/B0DKC3HXVJ',
         otherLinks: [
         ],

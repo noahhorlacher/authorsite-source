@@ -4,6 +4,7 @@ const route = useRoute()
 const links = [
   { url: '/', text: 'Home' },
   { url: '/books', text: 'Bücher' },
+  { url: '/feed', text: 'Feed' },
   { url: '/quotes', text: 'Zitate' },
   { url: '/goodies', text: 'Goodies' },
   { url: '/contact', text: 'Kontakt' },
