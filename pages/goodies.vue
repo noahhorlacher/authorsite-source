@@ -33,9 +33,9 @@ const goodies = [
                     <p>{{ goodie.series }}</p>
                     
                     <h4 class="font-bold opacity-70 mt-4 mb-2">Typ</h4>
-                    <div class="bg-gray-100 rounded-md inline-block px-3 py-1">
-                        <p>{{ goodie.type }}</p>
-                    </div>
+                    <p class="bg-gray-100 rounded-md inline-block px-3 py-1">
+                        {{ goodie.type }}
+                    </p>
                 </n-card>
             </a>
         </div>
