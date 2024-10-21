@@ -65,9 +65,9 @@ onMounted(() => {
             </div>
             <n-rating :rating="book.rating" :url="book.reviewsUrl" />
             <div class="py-8">
-                <div class="italic" v-if="book.reviews.length == 0">
+                <p class="italic text-sm" v-if="book.reviews.length == 0">
                     Es existieren noch keine Rezensionen. <nuxt-link :to="book.reviewsUrl" class="underline">Schreibe das erste Review</nuxt-link>
-                </div>
+                </p>
             </div>
         </n-section>
     </div>

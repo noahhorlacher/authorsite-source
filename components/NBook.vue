@@ -29,7 +29,7 @@ defineProps({
 
         
         <p v-if="book.shortDescription" class="opacity-70">{{ book.shortDescription }}</p>
-        <n-rating v-if="!book.wip" :rating="book.rating" class="mt-8" />
+        <n-rating v-if="!book.wip" :value="book.rating" class="mt-8" />
 
         <div v-if="book.wip" class="flex flex-row gap-4 items-center mt-2">
             <Icon name="tabler:info-circle" />
