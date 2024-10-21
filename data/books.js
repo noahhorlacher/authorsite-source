@@ -27,8 +27,13 @@ export const books = [
         seriesDescription: 'Teil 1 der Leonhard Mondsturm Serie',
         img: '/covers/eBook_cover.jpg',
         amazonUrl: 'https://www.amazon.de/gp/product/B0DKC3HXVJ',
+        otherLinks: [
+        ],
+        reviewsUrl: 'https://www.goodreads.com/book/show/220572266-leonhard-mondsturm',
         detailsUrl: '/books/leonhard-mondsturm-das-herz-des-waldes',
         published: '2024-10-19',
-        rating: null
+        rating: null,
+        readingSample: '/leseproben/leonhard_mondsturm_ das_herz_des_waldes_leseprobe.epub',
+        reviews: []
     },
 ]
