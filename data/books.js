@@ -33,7 +33,8 @@ export const books = [
         detailsUrl: '/books/leonhard-mondsturm-das-herz-des-waldes',
         published: '2024-10-19',
         rating: null,
-        readingSample: '/leseproben/leonhard_mondsturm_ das_herz_des_waldes_leseprobe.epub',
+        pdfReadingSample: '/leseproben/leonhard_mondsturm_ das_herz_des_waldes_leseprobe.pdf',
+        epubReadingSample: '/leseproben/leonhard_mondsturm_ das_herz_des_waldes_leseprobe.epub',
         reviews: []
     },
 ]

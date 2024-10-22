@@ -31,13 +31,17 @@ onMounted(() => {
             <p>{{ book.description }}</p>
         </n-section>
 
-        <n-section class="!py-6" v-if="book.readingSample">
+        <n-section class="!py-6" v-if="book.pdfReadingSample || book.epubReadingSample">
             <h3 class="text-lg md:text-xl mb-4 font-bold w-full whitespace-normal">Leseprobe</h3>
             <p>Die ersten 20% des Buches als Leseprobe.</p>
             <div class="pt-8 flex gap-4 flex-wrap">
-                <n-button variant="black" :download="book.readingSample">
+                <n-button variant="black" :download="book.pdfReadingSample" v-if="book.pdfReadingSample">
                     <Icon class="mr-4 w-5 h-5" name="tabler:download" />
-                    <p>Download</p>
+                    <p>Download .pdf</p>
+                </n-button>
+                <n-button variant="black" :download="book.epubReadingSample" v-if="book.epubReadingSample">
+                    <Icon class="mr-4 w-5 h-5" name="tabler:download" />
+                    <p>Download .epub</p>
                 </n-button>
             </div>
         </n-section>
