@@ -3,10 +3,11 @@ export const books = [
         id: 'leonhard-mondsturm-die-rache-des-udohr',
         title: 'Gedichte und Bestaunungen',
         subtitle: 'von Noah Horlacher',
-        description: 'Eine Sammlung meiner Gedichte und Gedanken. Sie handelt von Raum, Zeit, Traum und Licht.',
-        shortDescription: 'Eine Sammlung meiner Gedichte.',
+        description: 'Eine Selektion von Gedichten und Kurztexten zur Natur, zur Liebe, zu Träumen und zum Leben von Noah Horlacher.',
+        shortDescription: 'Eine Sammlung meiner Gedichte zu Liebe, Traum und Leben.',
         wip: true,
-        rating: null
+        rating: null,
+        img: '/covers/gedichte_und_bestaunungen.png'
     },
     {
         id: 'leonhard-mondsturm-die-rache-des-udohr',
