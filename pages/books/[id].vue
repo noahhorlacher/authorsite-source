@@ -96,14 +96,10 @@ onMounted(() => {
                 <p>von <nuxt-link class="underline" :to="book.reviewsUrl">goodreads.com</nuxt-link></p>
             </div>
             <n-rating :rating="book.rating" :url="book.reviewsUrl" />
-            <div class="py-8">
-                <p class="italic text-sm" v-if="!book.reviews || book.reviews.length == 0">
-                    Es existieren noch keine Rezensionen. <nuxt-link :to="book.reviewsUrl" class="underline">Schreibe das erste Review</nuxt-link>
-                </p>
-            </div>
         </n-section>
         <p  class="mb-12" v-else></p>
     </div>
+
     <div v-else-if="error">
         <div class="min-h-screen grid place-items-center">
         <div class="flex flex-col items-center">
