@@ -20,7 +20,11 @@ onMounted(() => {
     <div v-if="book && !error">
         <n-section class="bg-gray-100">
             <div class="flex justify-center w-full select-none">
-                <img v-if="book.img" :src="book.img" class="mx-auto mt-12 max-h-[700px] shadow-2xl rounded-xl mb-16" />
+                <div v-if="book.cover" class="relative mb-12 group mx-auto mt-12 w-auto rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow" @click="flipBook">
+                    <img class="max-h-[700px]" :src="'/covers/' + book.id + '/front.jpg'" alt="Front Cover" />
+                    <img class="max-h-[700px] absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100" :src="'/covers/' + book.id + '/back.jpg'" alt="Back Cover" />
+                </div>
+                
                 <div v-else class="relative text-center max-h-[700px] w-full mt-12 mb-16">
                     <img class="shadow-xl mx-auto rounded-xl mb-12 max-h-[700px] hover:shadow-2xl transition-shadow" src="/covers/book_placeholder.png" />
                     <div class="absolute text-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -29,6 +33,7 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
+
             <h1 class="text-2xl md:text-4xl text-center font-bold mb-4">{{ book.title }}</h1>
             <h2 class="mb-4 text-center">{{ book.subtitle }}</h2>
             <h3 v-if="book.published" class="opacity-70 font-bold text-center">{{ formatDate(book.published) }}</h3>
