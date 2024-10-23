@@ -7,15 +7,17 @@ defineProps({
 <template>
     <div class="max-w-xs grow-0 shrink-0">
 
-        <nuxt-link :to="'/books/' + book.id" v-if="book.img">
-            <img class="shadow-xl rounded-xl mb-12 hover:shadow-2xl transition-shadow" :src="book.img" />
-        </nuxt-link>
-        <nuxt-link v-else-if="!book.img && !book.wip" :to="'/books/' + book.id">
+        <div v-if="book.cover" class="relative mb-12 group rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow" @click="flipBook">
+            <img :src="'/covers/' + book.id + '/front.jpg'" alt="Front Cover" class="w-full h-full object-cover" />
+            <img :src="'/covers/' + book.id + '/back.jpg'" alt="Back Cover" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity group-hover:opacity-100" />
+        </div>
+
+        <div v-else-if="!book.cover && !book.wip">
             <div class="relative">
                 <img class="shadow-xl rounded-xl mb-12 hover:shadow-2xl transition-shadow" src="/covers/book_placeholder.png" />
             </div>
-        </nuxt-link>
-        <nuxt-link :to="'/books/' + book.id" v-else-if="!book.img & book.wip">
+        </div>
+        <div v-else-if="!book.cover & book.wip">
             <div class="relative">
                 <img class="shadow-xl rounded-xl mb-12 hover:shadow-2xl transition-shadow" src="/covers/book_placeholder.png" />
                 <div class="absolute text-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -23,7 +25,7 @@ defineProps({
                     <p>Work in progress</p>
                 </div>
             </div>
-        </nuxt-link>
+        </div>
 
 
         <h3 class="text-black font-bold text-xl opacity-70 mb-1">{{ book.title }}</h3>
@@ -48,3 +50,6 @@ defineProps({
         </div>
     </div>
 </template>
+
+<style scoped>
+</style>

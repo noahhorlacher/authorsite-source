@@ -1,12 +1,12 @@
 export const books = [
     {
-        id: 'leonhard-mondsturm-gedichte-und-bestaunungen',
+        id: 'gedichte-und-bestaunungen',
         title: 'Gedichte und Bestaunungen',
         subtitle: 'von Noah Horlacher',
         description: 'Eine Selektion von Gedichten und Kurztexten zur Natur, zur Liebe, zu Träumen und zum Leben von Noah Horlacher.',
         shortDescription: 'Eine Sammlung meiner Gedichte zu Liebe, Traum und Leben.',
         wip: true,
-        img: '/covers/gedichte_und_bestaunungen.png',
+        cover: true,
         excerpt: {
             title: 'Morgenglühen',
             text: `Die Nacht im Sterben liegt
@@ -43,7 +43,7 @@ und neu das Leben lebt.
         description: 'Leonhard Mondsturm, ein junger Schmied, begibt sich in den verbotenen Wald, in dem nichts ist, wie es scheint. Zusammen mit seiner Langhaarratte Flitz und seiner besten Freundin Sarah muss er sich mehreren philosophischen Herausforderungen stellen, um sein Dorf zu retten.',
         shortDescription: 'Leonhard Mondsturm betritt mit Ratte Flitz und Freundin Sarah den verbotenen Wald, um sein Dorf zu retten.',
         seriesDescription: 'Teil 1 der Leonhard Mondsturm Serie',
-        img: '/covers/leonhard_mondsturm_das_herz_des_waldes.jpg',
+        cover: true,
         orderInformation: 'In der Schweiz momentan nur als eBook verfügbar. Voraussichtliches Veröffentlichungsdatum von Taschenbuch und gebundenem Buch in der Schweiz: 31. Oktober 2024',
         amazonUrl: 'https://www.amazon.de/gp/product/B0DKC3HXVJ',
         playUrl: 'https://play.google.com/store/books/details/Noah_Horlacher_Leonhard_Mondsturm_Das_Herz_des_Wal?id=qGsrEQAAQBAJ',
