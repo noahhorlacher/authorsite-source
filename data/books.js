@@ -64,8 +64,8 @@ und neu das Leben lebt.
         reviewsUrl: 'https://www.goodreads.com/book/show/220572266-leonhard-mondsturm',
         published: '2024-10-19',
         rating: null,
-        pdfReadingSample: '/leseproben/leonhard_mondsturm_ das_herz_des_waldes_leseprobe.pdf',
-        epubReadingSample: '/leseproben/leonhard_mondsturm_ das_herz_des_waldes_leseprobe.epub',
+        pdfReadingSample: '/leseproben/leonhard_mondsturm_das_herz_des_waldes_leseprobe.pdf',
+        epubReadingSample: '/leseproben/leonhard_mondsturm_das_herz_des_waldes_leseprobe.epub',
         reviews: []
     },
 ]
