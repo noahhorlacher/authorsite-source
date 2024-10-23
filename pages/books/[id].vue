@@ -40,12 +40,18 @@ onMounted(() => {
         </n-section>
 
         <n-section class="!pb-6">
-            <h3 class="mb-4 text-lg md:text-xl font-bold w-full whitespace-normal">Beschreibung</h3>
+            <h3 class="mb-4 text-lg md:text-xl font-bold w-full">Beschreibung</h3>
             <p>{{ book.description }}</p>
         </n-section>
 
+        <n-section class="!pt-6" v-if="book.wip && book.excerpt">
+            <h3 class="mb-4 text-lg md:text-xl font-bold w-full">Auszug</h3>
+            <h4 v-if="book.excerpt.title" class="mb-4 text-md md:text-lg font-bold w-full">{{ book.excerpt.title }}</h4>
+            <p class=" whitespace-pre-line">{{ book.excerpt.text }}</p>
+        </n-section>
+
         <n-section class="!py-6" v-if="book.pdfReadingSample || book.epubReadingSample">
-            <h3 class="text-lg md:text-xl mb-4 font-bold w-full whitespace-normal">Leseprobe</h3>
+            <h3 class="text-lg md:text-xl mb-4 font-bold w-full">Leseprobe</h3>
             <p>Die ersten 20% des Buches als Leseprobe.</p>
             <div class="pt-8 flex gap-4 flex-wrap">
                 <n-button variant="black" :download="book.pdfReadingSample" v-if="book.pdfReadingSample">
@@ -61,11 +67,20 @@ onMounted(() => {
 
         <n-section class="!py-6" v-if="book.amazonUrl || (book.otherLinks && book.otherLinks.length > 0)">
             <h3 class="text-lg md:text-xl mb-4 font-bold w-full whitespace-normal">Kauflinks</h3>
+            <div v-if="!book.wip && book.orderInformation" class="text-sm rounded-md bg-gray-200 py-4 px-6 italic my-6">
+                <p>{{ book.orderInformation }}</p>
+            </div>
+            
             <p>Als eBook, gebundenes Buch und Taschenbuch erhältlich.</p>
+
             <div class="pt-8 flex gap-4 flex-wrap">
                 <n-button variant="black" :link="book.amazonUrl" v-if="book.amazonUrl">
                     <Icon class="mr-4 w-5 h-5" name="tabler:brand-amazon" />
                     <p>Amazon</p>
+                </n-button>
+                <n-button variant="black" :link="book.playUrl" v-if="book.playUrl">
+                    <Icon class="mr-4 w-5 h-5" name="tabler:brand-google-play" />
+                    <p>Play Store</p>
                 </n-button>
                 <n-button variant="black" v-for="otherLink of book.otherLinks" :link="otherLink.url" v-if="book.otherLinks && book.otherLinks.length > 0">
                     <Icon class="mr-4 w-5 h-5" name="tabler:link" />
@@ -82,7 +97,7 @@ onMounted(() => {
             </div>
             <n-rating :rating="book.rating" :url="book.reviewsUrl" />
             <div class="py-8">
-                <p class="italic text-sm" v-if="book.reviews.length == 0">
+                <p class="italic text-sm" v-if="!book.reviews || book.reviews.length == 0">
                     Es existieren noch keine Rezensionen. <nuxt-link :to="book.reviewsUrl" class="underline">Schreibe das erste Review</nuxt-link>
                 </p>
             </div>
