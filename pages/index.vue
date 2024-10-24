@@ -1,8 +1,8 @@
 <script setup>
-import { books } from '~/data/books'
+import { booksIndex } from '~/data/books_index'
 
-const wipBooks = books.filter(b => b.wip)
-const finishedBooks = books.filter(b => !b.wip)
+const wipBooks = booksIndex.filter(b => b.wip)
+const finishedBooks = booksIndex.filter(b => !b.wip)
 
 const sortedFinishedBooks = finishedBooks.sort((a, b) => new Date(b.published) - new Date(a.published));
 

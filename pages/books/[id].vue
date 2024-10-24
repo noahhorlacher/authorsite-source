@@ -1,11 +1,11 @@
 <script setup>
-import { books } from '~/data/books'
+import { booksIndex } from '~/data/books_index'
 
 const route = useRoute()
 const id = route.params.id
 
 const book = ref()
-book.value = books.find(b => b.id == id)
+book.value = booksIndex.find(b => b.id == id)
 
 const error = ref(false)
 
