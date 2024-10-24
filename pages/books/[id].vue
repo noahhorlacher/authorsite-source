@@ -72,22 +72,35 @@ onMounted(() => {
 
         <n-section class="!py-6" v-if="book.amazonUrl || (book.otherLinks && book.otherLinks.length > 0)">
             <h3 class="text-lg md:text-xl mb-4 font-bold w-full whitespace-normal">Kauflinks</h3>
-            <div v-if="!book.wip && book.orderInformation" class="text-sm rounded-md bg-gray-200 py-4 px-6 italic my-6">
+            <div v-if="!book.wip && book.orderInformation" class="text-sm rounded-md max-w-[600px] bg-gray-200 py-4 px-6 italic my-6">
                 <p>{{ book.orderInformation }}</p>
             </div>
             
-            <p>Als eBook, gebundenes Buch und Taschenbuch erhältlich.</p>
+            <p class="mb-12">Als eBook, gebundenes Buch und Taschenbuch erhältlich.</p>
 
-            <div class="pt-8 flex gap-4 flex-wrap">
+            <p class="font-bold mt-4 mb-2">Empfohlen</p>
+            <div class="flex gap-4 flex-wrap">
+                <n-button variant="black" recommended :link="book.orellfuessliUrl" v-if="book.orellfuessliUrl">
+                    <Icon class="mr-4 w-5 h-5" name="tabler:book" />
+                    <p>Orell Füssli</p>
+                </n-button>
                 <n-button variant="black" :link="book.amazonUrl" v-if="book.amazonUrl">
                     <Icon class="mr-4 w-5 h-5" name="tabler:brand-amazon" />
                     <p>Amazon</p>
                 </n-button>
-                <n-button variant="black" :link="book.playUrl" v-if="book.playUrl">
+            </div>
+
+            <p class="font-bold mt-4 mb-2">Andere</p>
+            <div class="flex gap-4 flex-wrap">
+                <n-button variant="outline" :link="book.playUrl" v-if="book.playUrl">
                     <Icon class="mr-4 w-5 h-5" name="tabler:brand-google-play" />
                     <p>Play Store</p>
                 </n-button>
-                <n-button variant="black" v-for="otherLink of book.otherLinks" :link="otherLink.url" v-if="book.otherLinks && book.otherLinks.length > 0">
+                <n-button variant="outline" :link="book.appleUrl" v-if="book.appleUrl">
+                    <Icon class="mr-4 w-5 h-5" name="tabler:brand-appstore" />
+                    <p>Apple Books</p>
+                </n-button>
+                <n-button variant="outline" v-for="otherLink of book.otherLinks" :link="otherLink.url" v-if="book.otherLinks && book.otherLinks.length > 0">
                     <Icon class="mr-4 w-5 h-5" name="tabler:link" />
                     <p>{{ otherLink.label }}</p>
                 </n-button>

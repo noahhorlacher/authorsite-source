@@ -27,17 +27,19 @@ const typeStyle = computed(() => {
 </script>
 
 <template>
-    <a v-if="link" :href="link" class="inline-flex items-center">
-        <div :class="`inline-flex items-center transition-all py-2 text-sm px-4 border-2 cursor-pointer ${typeStyle} rounded-md`">
+    <div class="relative">
+        <a v-if="link" :href="link" class="inline-flex items-center">
+            <div :class="`inline-flex items-center transition-all py-2 text-sm px-4 border-2 cursor-pointer ${typeStyle} rounded-md`">
+                <slot />
+            </div>
+        </a>
+        <a v-else-if="download" :href="download" :download="download" class="inline-flex items-center">
+            <div :class="`inline-flex items-center transition-all py-2 text-sm px-4 border-2 cursor-pointer ${typeStyle} rounded-md`">
+                <slot />
+            </div>
+        </a>
+        <div v-else :class="`inline-flex items-center transition-all py-2 text-sm px-4 border-2 cursor-pointer ${typeStyle} rounded-md`">
             <slot />
         </div>
-    </a>
-    <a v-else-if="download" :href="download" :download="download" class="inline-flex items-center">
-        <div :class="`inline-flex items-center transition-all py-2 text-sm px-4 border-2 cursor-pointer ${typeStyle} rounded-md`">
-            <slot />
-        </div>
-    </a>
-    <div v-else :class="`inline-flex items-center transition-all py-2 text-sm px-4 border-2 cursor-pointer ${typeStyle} rounded-md`">
-            <slot />
-        </div>
+    </div>
 </template>

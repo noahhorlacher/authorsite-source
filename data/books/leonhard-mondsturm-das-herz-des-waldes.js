@@ -6,14 +6,12 @@ export const leonhardMondsturmDasHerzDesWaldes = {
     shortDescription: 'Leonhard Mondsturm betritt mit seiner Langhaarratte Flitz und seiner besten Freundin Sarah den verbotenen Wald, um sein Dorf zu retten.',
     seriesDescription: 'Teil 1 der Leonhard Mondsturm Serie',
     cover: true,
-    orderInformation: 'In der Schweiz momentan nur als eBook verfügbar. Voraussichtliches Veröffentlichungsdatum von Taschenbuch und gebundenem Buch in der Schweiz: 31. Oktober 2024',
+    orderInformation: 'In der Schweiz momentan nur als eBook verfügbar. In den kommenden Tagen wird das Buch (gebunden, Taschenbuch) über Orell Füssli auch in der Schweiz verfügbar sein.',
+    orellfuessliUrl: 'https://www.orellfuessli.ch/shop/home/artikeldetails/A1073362068',
     amazonUrl: 'https://www.amazon.de/gp/product/B0DKC3HXVJ',
     playUrl: 'https://play.google.com/store/books/details/Noah_Horlacher_Leonhard_Mondsturm_Das_Herz_des_Wal?id=qGsrEQAAQBAJ',
+    appleUrl: 'https://books.apple.com/us/book/leonhard-mondsturm-das-herz-des-waldes/id6737220405',
     otherLinks: [
-        {
-            label: 'Orell Füssli',
-            url: 'https://www.orellfuessli.ch/shop/home/artikeldetails/A1073362068'
-        },
         {
             label: 'Thalia',
             url: 'https://www.thalia.de/shop/home/artikeldetails/A1073362068'
