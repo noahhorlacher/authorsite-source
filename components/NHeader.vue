@@ -9,6 +9,12 @@ const links = [
   { url: '/goodies', text: 'Goodies' },
   { url: '/contact', text: 'Kontakt' },
 ]
+
+const mobileMenuOpen = ref(false)
+
+function toggleMobileMenu() {
+  mobileMenuOpen.value = !mobileMenuOpen.value
+}
 </script>
 
 <template>
@@ -26,36 +32,38 @@ const links = [
           v-for="link in links"
           :key="link.url"
           :to="link.url"
-          :class="{ 'font-bold': route.path === link.url }"
+          :class="[ 'font-semibold', route.path === link.url ? 'text-black' : 'text-gray-500 hover:text-black' ]"
         >
           {{ link.text }}
         </nuxt-link>
       </nav>
   
       <!-- Mobile Links (Checkbox controlled) -->
-      <input type="checkbox" id="menu-toggle" class="hidden peer" />
-      <div class="fixed inset-0 z-20 flex flex-col items-center justify-center gap-4 bg-white text-2xl md:hidden peer-checked:flex hidden">
+      <div :class="['fixed inset-0 z-20 flex flex-col items-center justify-center gap-4 bg-white text-2xl', mobileMenuOpen ? 'block md:hidden' : 'hidden']">
         <nuxt-link
           v-for="link in links"
           :key="link.url"
           :to="link.url"
-          :class="{ 'font-bold': route.path === link.url }"
+          :class="[ 'font-semibold', route.path === link.url ? 'text-black' : 'text-gray-500 hover:text-black' ]"
+          @click="mobileMenuOpen = false"
         >
           {{ link.text }}
         </nuxt-link>
       </div>
   
       <!-- Mobile Menu Icon -->
-      <label for="menu-toggle" class="block z-40 cursor-pointer md:hidden">
+      <div class="block z-40 cursor-pointer md:hidden" @click="toggleMobileMenu">
         <Icon
           name="tabler:menu"
-          class="h-6 w-6 text-black block peer-checked:hidden"
+          v-if="!mobileMenuOpen"
+          class="h-6 w-6 text-black"
         />
         <Icon
+          v-else
           name="tabler:x"
-          class="h-6 w-6 text-black hidden peer-checked:block"
+          class="h-6 w-6 text-black"
         />
-      </label>
+      </div>
     </header>
   </template>
 
