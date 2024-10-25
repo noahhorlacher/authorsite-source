@@ -1,6 +1,12 @@
 export const feed = [
     {
         type: 'Post',
+        title: 'Hardcover & Taschenbuch jetzt auch in der Schweiz',
+        content: `Leonhard Mondsturm: Das Herz des Waldes ist jetzt auch in der Schweiz als gebundenes Buch und als Taschenbuch auf Orell Füssli erhältlich!`,
+        date: '2024-10-25'
+    },
+    {
+        type: 'Post',
         title: 'Leonhard Mondsturm Teil 1 veröffentlicht',
         content: `Es ist soweit. Der erste Schritt ist getan, der erste Punkt meiner Bucketlist abgehakt.
 Leonhard Mondsturm und das Herz des Waldes ist nun auf Amazon erhältlich. In der Schweiz ist es leider nur als eBook erhältlich, wofür ich micht entschuldige.

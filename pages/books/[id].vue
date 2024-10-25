@@ -7,13 +7,7 @@ const id = route.params.id
 const book = ref()
 book.value = booksIndex.find(b => b.id == id)
 
-const error = ref(false)
-
-onMounted(() => {
-    if(!book.value){
-        error.value = true
-    }
-})
+const error = ref(!book.value)
 </script>
 
 <template>
@@ -76,14 +70,14 @@ onMounted(() => {
                 <p>{{ book.orderInformation }}</p>
             </div>
             
-            <p class="mb-12">Als eBook, gebundenes Buch und Taschenbuch erhältlich.</p>
+            <p class="mb-8">Als eBook, gebundenes Buch und Taschenbuch erhältlich.</p>
 
             <p class="font-bold mt-4 mb-2">Empfohlen</p>
             <div class="flex gap-4 flex-wrap">
-                <n-button variant="black" recommended :link="book.orellfuessliUrl" v-if="book.orellfuessliUrl">
+                <n-dropdown v-if="book.orellfuessli" :menu-items="book.orellfuessli">
                     <Icon class="mr-4 w-5 h-5" name="tabler:book" />
                     <p>Orell Füssli</p>
-                </n-button>
+                </n-dropdown>
                 <n-button variant="black" :link="book.amazonUrl" v-if="book.amazonUrl">
                     <Icon class="mr-4 w-5 h-5" name="tabler:brand-amazon" />
                     <p>Amazon</p>
@@ -120,17 +114,17 @@ onMounted(() => {
 
     <div v-else-if="error">
         <div class="min-h-screen grid place-items-center">
-        <div class="flex flex-col items-center">
-            <h1 class="font-bold text-[3rem]">Hmm...</h1>
-            <h2 class="mb-8">Etwas stimmt nicht.</h2>
-            <n-button link="/" variant="outline">
-                <Icon name="tabler:arrow-left" class="w-5 h-5 mr-4"></Icon>
-                <p>
-                    Zurück
-                </p>
-            </n-button>
+            <div class="flex flex-col items-center">
+                <h1 class="font-bold text-[3rem]">Hmm...</h1>
+                <h2 class="mb-8">Etwas stimmt nicht.</h2>
+                <n-button link="/" variant="outline">
+                    <Icon name="tabler:arrow-left" class="w-5 h-5 mr-4"></Icon>
+                    <p>
+                        Zurück
+                    </p>
+                </n-button>
+            </div>
         </div>
-    </div>
     </div>
 
 </template>

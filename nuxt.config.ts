@@ -5,6 +5,10 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
-    '@nuxt/image'
+    '@nuxt/image',
+    'nuxt-headlessui',
   ],
+  headlessui: {
+    prefix: 'Headless'
+  }
 })
