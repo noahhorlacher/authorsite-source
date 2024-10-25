@@ -7,7 +7,7 @@ defineProps({
 
 <template>
     <div class="bg-white max-w-[300px] shadow-xl hover:shadow-2xl transition-shadow rounded-xl overflow-hidden">
-        <div class="bg-gradient-to-r from-emerald-400 to-cyan-400 px-8 py-4 flex justify-center">
+        <div class="bg-gray-400 px-8 py-4 flex justify-center">
             <Icon class="w-8 h-8 text-white" :name="icon" />
         </div>
         
