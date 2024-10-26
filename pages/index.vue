@@ -10,7 +10,7 @@ const sortedBooks = [...sortedFinishedBooks, ...wipBooks]
 </script>
 
 <template>
-    <div class="min-h-screen relative bg-black bg-cover bg-center bg-fixed"
+    <div class="min-h-screen relative bg-black bg-cover bg-center"
         style="background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url('/img/lyranthia_map.jpg')">
         <n-section class="text-white absolute left-0 bottom-32">
             <h2 class="text-2xl md:text-4xl font-bold mb-4">Willkommen in meiner Welt</h2>
