@@ -20,7 +20,7 @@ defineProps({
   
       <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
         <HeadlessMenuItems class="absolute left-0 z-10 mt-2 w-56 origin-top-left rounded-md overflow-hidden bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <p class="text-sm px-6 py-4 border-b-[1px] border-gray-20 bg-black text-white">Ausgabe wählen</p>
+            <p class="text-sm px-6 py-2 bg-black text-white">Ausgabe wählen</p>
             <HeadlessMenuItem v-for="menuItem of menuItems" v-slot="{ active }">
                 <nuxt-link :to="menuItem.url" :class="[active ? 'bg-gray-200 text-black' : 'bg-white text-black', 'px-6 py-4 gap-x-3 text-sm flex items-center justify-between']">
                     <p>{{ menuItem.label }}</p>

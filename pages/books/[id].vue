@@ -4,14 +4,15 @@ import { booksIndex } from '~/data/books_index'
 const route = useRoute()
 const id = route.params.id
 
-const book = ref()
-book.value = booksIndex.find(b => b.id == id)
+const book = ref(booksIndex.find(b => b.id == id))
 
-const error = ref(!book.value)
+onMounted(() => {
+    if(!book.value) throw createError({ statusCode: 404, message: 'Book not found.', fatal: true})
+})
 </script>
 
 <template>
-    <div v-if="book && !error">
+    <div v-if="book">
         <n-section class="bg-gray-100">
             <div class="flex justify-center w-full select-none">
                 <div v-if="book.cover" class="relative mb-12 group mx-auto mt-12 w-auto rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow" @click="flipBook">
@@ -110,21 +111,6 @@ const error = ref(!book.value)
             <n-rating :rating="book.rating" :url="book.reviewsUrl" />
         </n-section>
         <p  class="mb-12" v-else></p>
-    </div>
-
-    <div v-else-if="error">
-        <div class="min-h-screen grid place-items-center">
-            <div class="flex flex-col items-center">
-                <h1 class="font-bold text-[3rem]">Hmm...</h1>
-                <h2 class="mb-8">Etwas stimmt nicht.</h2>
-                <n-button link="/" variant="outline">
-                    <Icon name="tabler:arrow-left" class="w-5 h-5 mr-4"></Icon>
-                    <p>
-                        Zurück
-                    </p>
-                </n-button>
-            </div>
-        </div>
     </div>
 
 </template>

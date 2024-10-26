@@ -32,7 +32,7 @@ function toggleMobileMenu() {
           v-for="link in links"
           :key="link.url"
           :to="link.url"
-          :class="[ 'font-semibold', route.path === link.url ? 'text-black' : 'text-gray-500 hover:text-black' ]"
+          :class="['font-semibold', route.path === link.url ? 'text-black' : 'text-gray-500 hover:text-black' ]"
         >
           {{ link.text }}
         </nuxt-link>
@@ -44,7 +44,7 @@ function toggleMobileMenu() {
           v-for="link in links"
           :key="link.url"
           :to="link.url"
-          :class="[ 'font-semibold', route.path === link.url ? 'text-black' : 'text-gray-500 hover:text-black' ]"
+          :class="['font-semibold', route.path === link.url ? 'text-black' : 'text-gray-500 hover:text-black' ]"
           @click="mobileMenuOpen = false"
         >
           {{ link.text }}

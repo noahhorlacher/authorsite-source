@@ -34,8 +34,7 @@ const sortedBooks = [...sortedFinishedBooks, ...wipBooks]
             <n-book v-for="book in sortedBooks.slice(0, 3)" :book="book" />
         </div>
         <div class="w-auto flex justify-center" v-if="sortedBooks.length > 3">
-            <n-button link="/books"
-                class="b-4 block border-black bg-transparent text-black hover:bg-black hover:text-white">
+            <n-button link="/books" variant="black">
                 <p>Alle Bücher anzeigen</p>
                 <Icon name="tabler:arrow-narrow-right" class="ml-4 w-5 h-5"></Icon>
             </n-button>
