@@ -7,21 +7,29 @@ const id = route.params.id
 const book = ref(booksIndex.find(b => b.id == id))
 
 onMounted(() => {
-    if(!book.value) throw createError({ statusCode: 404, message: 'Book not found.', fatal: true})
+    if (!book.value) throw createError({ statusCode: 404, message: 'Book not found.', fatal: true })
 })
 </script>
 
 <template>
-    <div v-if="book">
-        <n-section class="bg-gray-100">
+    <div v-if="book" class="pb-16">
+        <n-section :class="['relative !pb-36', book.darkBackground ? 'text-white' : 'text-black']">
+            <!-- Background -->
+            <div class="absolute bg-fixed bg-gray-100 -z-10 w-full h-full top-0 left-0 bg-cover bg-center" :style="{ backgroundImage: `url(/backgroundimages/${book.backgroundImage})` }">
+            </div>
+
             <div class="flex justify-center w-full select-none">
-                <div v-if="book.cover" class="relative mb-12 group mx-auto mt-12 w-auto rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow" @click="flipBook">
+                <div v-if="book.cover"
+                    class="relative mb-12 group mx-auto mt-12 w-auto rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow"
+                    @click="flipBook">
                     <img class="max-h-[700px]" :src="'/covers/' + book.id + '/front.jpg'" alt="Front Cover" />
-                    <img class="max-h-[700px] absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100" :src="'/covers/' + book.id + '/back.jpg'" alt="Back Cover" />
+                    <img class="max-h-[700px] absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100"
+                        :src="'/covers/' + book.id + '/back.jpg'" alt="Back Cover" />
                 </div>
-                
+
                 <div v-else class="relative text-center max-h-[700px] w-full mt-12 mb-16">
-                    <img class="shadow-xl mx-auto rounded-xl mb-12 max-h-[700px] hover:shadow-2xl transition-shadow" src="/covers/book_placeholder.png" />
+                    <img class="shadow-xl mx-auto rounded-xl mb-12 max-h-[700px] hover:shadow-2xl transition-shadow"
+                        src="/covers/book_placeholder.png" />
                     <div class="absolute text-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                         <Icon name="tabler:clock" class="w-8 h-8" />
                         <p>Work in progress</p>
@@ -29,11 +37,16 @@ onMounted(() => {
                 </div>
             </div>
 
-            <h1 class="text-2xl md:text-4xl text-center font-bold mb-4">{{ book.title }}</h1>
-            <h2 class="mb-4 text-center">{{ book.subtitle }}</h2>
-            <h3 v-if="book.published" class="opacity-70 font-bold text-center">{{ formatDate(book.published) }}</h3>
-            <n-rating v-if="!book.wip" :rating="book.rating" class="text-center mt-8" />
-            <div v-if="book.wip" class="flex flex-row gap-4 items-center justify-center mt-2">
+            <h1 class="text-2xl md:text-4xl text-center font-bold mb-2 opacity-90">{{ book.title }}</h1>
+            <h2 class="mb-6 text-center text-lg opacity-60">{{ book.subtitle }}</h2>
+            
+            <div v-if="book.published" class="flex items-center gap-2 justify-center opacity-90">
+                <Icon name="tabler:calendar" class="w-5 h-5" />
+                <h3 class="opacity-70 font-bold text-center">{{ formatDate(book.published) }}</h3>
+            </div>
+            
+            <n-rating v-if="!book.wip" :rating="book.rating" class="text-center mt-8 opacity-80" />
+            <div v-if="book.wip" class="flex flex-row gap-4 items-center justify-center mt-2 opacity-90">
                 <Icon name="tabler:info-circle" />
                 <p>An diesem Buch wird gearbeitet.</p>
             </div>
@@ -67,15 +80,20 @@ onMounted(() => {
 
         <n-section class="!py-6" v-if="book.amazonUrl || (book.otherLinks && book.otherLinks.length > 0)">
             <h3 class="text-lg md:text-xl mb-4 font-bold w-full whitespace-normal">Kauflinks</h3>
-            <div v-if="!book.wip && book.orderInformation" class="text-sm rounded-md max-w-[600px] bg-gray-200 py-4 px-6 italic my-6">
+            <div v-if="!book.wip && book.orderInformation"
+                class="text-sm rounded-md max-w-[600px] bg-gray-200 py-4 px-6 italic my-6">
                 <p>{{ book.orderInformation }}</p>
             </div>
-            
+
             <p class="mb-8">Als eBook, gebundenes Buch und Taschenbuch erhältlich.</p>
 
             <p class="font-bold mt-4 mb-2">Empfohlen</p>
             <div class="flex gap-4 flex-wrap">
-                <n-dropdown v-if="book.orellfuessli" :menu-items="book.orellfuessli">
+                <n-dropdown v-if="book.orellfuessliUrl" :menu-items="book.exlibrisUrl">
+                    <Icon class="mr-4 w-5 h-5" name="tabler:book-2" />
+                    <p>Ex Libris</p>
+                </n-dropdown>
+                <n-dropdown v-if="book.orellfuessliUrl" :menu-items="book.orellfuessliUrl">
                     <Icon class="mr-4 w-5 h-5" name="tabler:book" />
                     <p>Orell Füssli</p>
                 </n-dropdown>
@@ -95,7 +113,8 @@ onMounted(() => {
                     <Icon class="mr-4 w-5 h-5" name="tabler:brand-appstore" />
                     <p>Apple Books</p>
                 </n-button>
-                <n-button variant="outline" v-for="otherLink of book.otherLinks" :link="otherLink.url" v-if="book.otherLinks && book.otherLinks.length > 0">
+                <n-button variant="outline" v-for="otherLink of book.otherLinks" :link="otherLink.url"
+                    v-if="book.otherLinks && book.otherLinks.length > 0">
                     <Icon class="mr-4 w-5 h-5" name="tabler:link" />
                     <p>{{ otherLink.label }}</p>
                 </n-button>
@@ -110,7 +129,7 @@ onMounted(() => {
             </div>
             <n-rating :rating="book.rating" :url="book.reviewsUrl" />
         </n-section>
-        <p  class="mb-12" v-else></p>
+        <p class="mb-12" v-else></p>
     </div>
 
 </template>

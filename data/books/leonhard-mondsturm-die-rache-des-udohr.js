@@ -6,5 +6,7 @@ export const leonhardMondsturmDieRacheDesUdohr = {
     shortDescription: 'Leon entdeckt einen geheimnisvollen Brief in einer Bibliothek. Mit seiner Freundin Sarah und seiner Ratte Flitz folgt er einer alten Legende und begibt sich auf ein gefährliches Abenteuer.',
     seriesDescription: 'Teil 2 der Leonhard Mondsturm Serie',
     wip: true,
-    cover: true
+    cover: true,
+    backgroundImage: 'abstract_2.png',
+    darkBackground: true,
 }

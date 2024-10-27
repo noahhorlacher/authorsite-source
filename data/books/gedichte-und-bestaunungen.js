@@ -6,6 +6,8 @@ export const gedichteUndBestaunungen = {
     shortDescription: 'Eine Sammlung meiner Gedichte zu Liebe, Traum und Leben.',
     wip: true,
     cover: true,
+    backgroundImage: 'depth.jpg',
+    darkBackground: true,
     excerpt: {
         title: 'Morgenglühen',
         text: `Die Nacht im Sterben liegt

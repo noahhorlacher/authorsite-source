@@ -6,10 +6,22 @@ export const leonhardMondsturmDasHerzDesWaldes = {
     shortDescription: 'Leonhard Mondsturm betritt mit seiner Langhaarratte Flitz und seiner besten Freundin Sarah den verbotenen Wald, um sein Dorf zu retten.',
     seriesDescription: 'Teil 1 der Leonhard Mondsturm Serie',
     cover: true,
-    orellfuessli: [
+    backgroundImage: 'abstract.png',
+    darkBackground: false,
+    orellfuessliUrl: [
         { label: 'eBook', url: 'https://www.orellfuessli.ch/shop/home/artikeldetails/A1073362068' },
-        { label: 'Hardcover', url: 'https://www.orellfuessli.ch/shop/home/artikeldetails/A1073382537' },
+        { label: 'Gebundene Ausgabe', url: 'https://www.orellfuessli.ch/shop/home/artikeldetails/A1073382537' },
         { label: 'Taschenbuch', url: 'https://www.orellfuessli.ch/shop/home/artikeldetails/A1073383578' },
+    ],
+    exlibrisUrl: [
+        {
+            label: 'Kartonierter Einband',
+            url: 'https://www.exlibris.ch/de/buecher-buch/deutschsprachige-buecher/noah-horlacher/leonhard-mondsturm-das-herz-des-waldes/id/9783759262707',
+        },
+        {
+            label: 'eBook',
+            url: 'https://www.exlibris.ch/de/buecher-buch/e-books-deutsch/noah-horlacher/leonhard-mondsturm-das-herz-des-waldes/id/9783759262097/'
+        }
     ],
     amazonUrl: 'https://www.amazon.de/gp/product/B0DKC3HXVJ',
     playUrl: 'https://play.google.com/store/books/details/Noah_Horlacher_Leonhard_Mondsturm_Das_Herz_des_Wal?id=qGsrEQAAQBAJ',
