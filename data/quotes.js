@@ -1,5 +1,10 @@
 export const quotes = [
     {
+        source: 'Der mechanische Engel',
+        speaker: 'Ausschnitt einer Betrachtung',
+        text: `In jenen dunklen Stunden fragte ich mich oft, ob Gott uns verlassen habe, oder ob wir es waren, die sich von Ihm abgewandt hatten in unserem Streben, sein Werk zu verbessern.`
+    },
+    {
         source: `Leonhard Mondsturm — das Herz des Waldes`,
         speaker: `Lied des Schicksals`,
         text: `Wir Wanderer im Nebelmeer,
