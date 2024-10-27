@@ -27,7 +27,7 @@ provideHeadlessUseId(() => useId())
 
 <style>
 html {
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
 }
 
 * {

@@ -28,16 +28,19 @@ defineProps({
         </div>
 
 
-        <h3 class="text-black font-bold text-xl opacity-70 mb-1">{{ book.title }}</h3>
-        <h4 v-if="book.subtitle" class="text-black font-bold text-md opacity-50 mb-4">{{ book.subtitle }}</h4>
-        <p v-if="book.seriesDescription" class="font-bold mt-6 mb-2 opacity-70">{{ book.seriesDescription }}</p>
-        <h4 v-if="book.published" class="opacity-70 mb-4">{{ formatDate(book.published) }}</h4>
+        <h3 class="text-black font-bold text-2xl opacity-70 mb-1">{{ book.title }}</h3>
+        <h4 v-if="book.subtitle" class="text-black font-semibold text-lg opacity-70 mb-1">{{ book.subtitle }}</h4>
+        <p v-if="book.seriesDescription" class="mb-1 text-sm opacity-70">{{ book.seriesDescription }}</p>
+        <!-- <div v-if="book.published" class="text-sm flex gap-2 items-center mt-4 mb-4">
+            <Icon name="tabler:calendar" class="w-4 h-4" />
+            <h4 class="opacity-70">{{ formatDate(book.published) }}</h4>
+        </div> -->
 
         
-        <p v-if="book.shortDescription" class="opacity-70">{{ book.shortDescription }}</p>
-        <n-rating v-if="!book.wip" :value="book.rating" class="mt-8" />
+        <p v-if="book.shortDescription" class="opacity-70 mt-4">{{ book.shortDescription }}</p>
+        <n-rating v-if="!book.wip" :value="book.rating" class="mt-6" />
 
-        <div v-if="book.wip" class="flex flex-row gap-4 items-center mt-2">
+        <div v-if="book.wip" class="flex flex-row gap-4 items-center mt-4">
             <Icon name="tabler:info-circle" />
             <p>An diesem Buch wird gearbeitet.</p>
         </div>
