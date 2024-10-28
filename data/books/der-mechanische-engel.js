@@ -6,7 +6,7 @@ export const derMechanischeEngel = {
     shortDescription: 'Im viktorianischen London wird ein Milchmann Zeuge, wie ein verzweifelter Erfinder im Kampf gegen die tödliche Krankheit seiner Tochter die Grenzen zwischen Mensch und Maschine aufhebt.',
     wip: true,
     cover: false,
-    backgroundImage: 'holographic.png',
+    backgroundImage: 'london.png',
     darkBackground: false,
     excerpt: {
         title: 'Ausschnitt einer Betrachtung',

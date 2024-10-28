@@ -13,7 +13,7 @@ onMounted(() => {
 
 <template>
     <div v-if="book" class="pb-16">
-        <n-section :class="['relative !pb-36', book.darkBackground ? 'text-white' : 'text-black']">
+        <n-section :class="['relative !pb-36 flex flex-col items-stretch', book.darkBackground ? 'text-white' : 'text-black']">
             <!-- Background -->
             <div class="absolute bg-fixed bg-gray-100 -z-10 w-full h-full top-0 left-0 bg-cover bg-center" :style="{ backgroundImage: `url(/backgroundimages/${book.backgroundImage})` }">
             </div>
@@ -30,25 +30,27 @@ onMounted(() => {
                 <div v-else class="relative text-center max-h-[700px] w-full mt-12 mb-16">
                     <img class="shadow-xl mx-auto rounded-xl mb-12 max-h-[700px] hover:shadow-2xl transition-shadow"
                         src="/covers/book_placeholder.png" />
-                    <div class="absolute text-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div class="absolute text-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-black">
                         <Icon name="tabler:clock" class="w-8 h-8" />
                         <p>Work in progress</p>
                     </div>
                 </div>
             </div>
 
-            <h1 class="text-2xl md:text-4xl text-center font-bold mb-2 opacity-90">{{ book.title }}</h1>
-            <h2 class="mb-6 text-center text-lg opacity-60">{{ book.subtitle }}</h2>
-            
-            <div v-if="book.published" class="flex items-center gap-2 justify-center opacity-90">
-                <Icon name="tabler:calendar" class="w-5 h-5" />
-                <h3 class="opacity-70 font-bold text-center">{{ formatDate(book.published) }}</h3>
-            </div>
-            
-            <n-rating v-if="!book.wip" :rating="book.rating" class="text-center mt-8 opacity-80" />
-            <div v-if="book.wip" class="flex flex-row gap-4 items-center justify-center mt-2 opacity-90">
-                <Icon name="tabler:info-circle" />
-                <p>An diesem Buch wird gearbeitet.</p>
+            <div :class="['bg-opacity-30 backdrop-blur-md rounded-xl overflow-hidden mx-auto px-7 py-5', book.darkBackground ? 'bg-black' : 'bg-white']">
+                <h1 class="text-2xl md:text-4xl text-center font-bold mb-2 opacity-90">{{ book.title }}</h1>
+                <h2 class="mb-6 text-center text-lg opacity-80">{{ book.subtitle }}</h2>
+                
+                <div v-if="book.published" class="flex items-center gap-2 justify-center opacity-90">
+                    <Icon name="tabler:calendar" class="w-5 h-5" />
+                    <h3 class="opacity-70 font-bold text-center">{{ formatDate(book.published) }}</h3>
+                </div>
+                
+                <n-rating v-if="!book.wip" :rating="book.rating" class="text-center mt-8 opacity-80" />
+                <div v-if="book.wip" class="flex flex-row gap-4 items-center justify-center mt-2 opacity-90">
+                    <Icon name="tabler:info-circle" />
+                    <p>An diesem Buch wird gearbeitet.</p>
+                </div>
             </div>
         </n-section>
 
