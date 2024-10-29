@@ -1,15 +1,33 @@
 <script setup>
-import { feed } from '~/data/feed'
+const { find } = useStrapi()
 
-const shownFeed = ref([...feed])
+const feed = ref(null)
+const shownFeed = ref([])
+
+const { data } = await useAsyncData('get feed', async () => {
+    const { data: feedData } = await find('feeds')
+
+    return feedData
+})
+
+feed.value = data.value
+
+onMounted(async () => {
+    feed.value = [...feed.value].sort((a, b) => new Date(b.date) - new Date(a.date))
+
+    shownFeed.value = [...feed.value].sort((a, b) => new Date(b.date) - new Date(a.date))
+})
 
 const filter = ref(null)
 
 watch(filter, () => {
     if(filter.value){
-        shownFeed.value = [...feed].filter(post => post.type == filter.value)
+        shownFeed.value = [...feed.value]
+            .filter(post => post.type == filter.value)
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
     } else {
-        shownFeed.value = [...feed]
+        shownFeed.value = [...feed.value]
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
     }
 })
 
@@ -47,7 +65,7 @@ const colors = {
                 </div>
 
                 <h3 class="text-lg font-bold mb-4">{{ post.title }}</h3>
-                <p class="whitespace-pre-line mb-6">{{ post.content }}</p>
+                <p class="whitespace-pre-line mb-6">{{ post.text }}</p>
             </article>
         </div>
     </n-section>

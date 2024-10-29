@@ -1,20 +1,18 @@
 <script setup>
-const goodies = [
-    {
-        title: 'Landkarte Lyranthia',
-        icon: 'tabler:compass',
-        series: 'Leonhard Mondsturm',
-        link: '/goodies/maps/lyranthia.jpg',
-        type: 'Landkarte'
-    },
-    {
-        title: 'Landkarte Eichenthal',
-        icon: 'tabler:compass',
-        series: 'Leonhard Mondsturm',
-        link: '/goodies/maps/eichenthal.jpg',
-        type: 'Landkarte'
-    }
-]
+const runtimeConfig = useRuntimeConfig()
+
+const { find } = useStrapi()
+const goodies = ref([])
+
+const { data } = await useAsyncData('git gud', async () => {
+    const { data: goodiesData} = await find('goodies', {
+        populate: '*'
+    })
+
+    return goodiesData
+})
+
+goodies.value = data.value
 </script>
 
 <template>
@@ -22,7 +20,7 @@ const goodies = [
         <h2 class="text-4xl font-bold mt-16 mb-32 text-center">Zusätzliche Materialien</h2>
         
         <div class="flex flex-wrap gap-8 justify-center">
-            <a v-for="goodie in goodies" :href="goodie.link">
+            <a v-for="goodie in goodies" :href="runtimeConfig.public.mediaUrl + goodie.asset.formats.large.url">
                 <n-card
                     :title="goodie.title"
                     :link="goodie.link"

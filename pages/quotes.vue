@@ -1,5 +1,15 @@
 <script setup>
-import { quotes } from '~/data/quotes'
+const { find } = useStrapi()
+
+const quotes = ref([])
+
+const { data } = await useAsyncData(async () => {
+    const { data: quotesData } = await find('quotes')
+
+    return quotesData
+})
+
+quotes.value = data.value
 </script>
 
 <template>

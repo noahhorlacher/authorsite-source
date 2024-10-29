@@ -7,8 +7,16 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     'nuxt-headlessui',
+    '@nuxtjs/strapi'
   ],
   headlessui: {
     prefix: 'Headless'
-  }
+  },
+  runtimeConfig: {
+    public: {
+      strapiUrl: 'http://localhost:1337',
+      mediaUrl: '/media-library'
+    }
+  },
+  ssr: true,
 })

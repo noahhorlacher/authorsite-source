@@ -1,17 +1,53 @@
 <script setup>
-import { booksIndex } from '~/data/books_index'
+const runtimeConfig = useRuntimeConfig()
 
-const wipBooks = booksIndex.filter(b => b.wip)
-const finishedBooks = booksIndex.filter(b => !b.wip)
+const { find, findOne } = useStrapi()
+const books = ref([])
 
-const sortedFinishedBooks = finishedBooks.sort((a, b) => new Date(b.published) - new Date(a.published));
+const landingPage = ref()
+const heroImageUrl = ref('')
+const profilePicUrl = ref('')
 
-const sortedBooks = [...sortedFinishedBooks, ...wipBooks]
+const { data } = await useAsyncData(
+    'getAllBooksIndex',
+    async () => {
+            const { data } = await find('books', {
+                populate: '*'
+            })
+            
+            return { data }
+        },
+)
+
+books.value = sortBooks(data.value.data)
+
+function sortBooks(booksData){
+    const wipBooks = booksData.filter(b => b.wip)
+    const finishedBooks = booksData.filter(b => !b.wip)
+    const sortedFinishedBooks = finishedBooks.sort((a, b) => new Date(b.published) - new Date(a.published))
+
+    return [...sortedFinishedBooks, ...wipBooks]
+}
+
+const { data: landingPageData } = await useAsyncData('getProfilePic',
+    async () => {
+        const { data } = await findOne('landing-page', {
+            populate: '*'
+        })
+
+        return { data }
+    }
+)
+
+landingPage.value = landingPageData.value.data
+
+heroImageUrl.value = landingPageData.value.data.heroimage.formats.large.url
+profilePicUrl.value = '/media-library' + landingPageData.value.data.profilepicture.formats.thumbnail.url
 </script>
 
 <template>
     <div class="min-h-screen relative bg-[#cec09b] bg-cover bg-center"
-        style="background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url('/img/lyranthia_map.jpg')">
+        :style="`background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url('/media-library${heroImageUrl}')`">
         <n-section class="text-white absolute left-0 bottom-32">
             <h2 class="text-2xl md:text-4xl font-bold mb-4">Willkommen in meiner Welt</h2>
             <p class="mb-8 max-w-[400px]">Tauche ein in fesselnde Geschichten, die dich in neue Welten transportieren und deine Fantasie entfachen.</p>
@@ -31,9 +67,9 @@ const sortedBooks = [...sortedFinishedBooks, ...wipBooks]
     <n-section class="bg-gray-100">
         <h2 class="text-4xl font-bold mb-4 text-center">Spotlight</h2>
         <div class="flex justify-center py-16 gap-16 flex-wrap grow-0 shrink-0">
-            <n-book v-for="book in sortedBooks.slice(0, 3)" :book="book" />
+            <n-book v-if="books" v-for="book in books.slice(0, 3)" :book="book" />
         </div>
-        <div class="w-auto flex justify-center" v-if="sortedBooks.length > 3">
+        <div class="w-auto flex justify-center" v-if="books && books.length > 3">
             <n-button link="/books" variant="black">
                 <p>Alle Bücher anzeigen</p>
                 <Icon name="tabler:arrow-narrow-right" class="ml-4 w-5 h-5"></Icon>
@@ -45,7 +81,7 @@ const sortedBooks = [...sortedFinishedBooks, ...wipBooks]
         <h2 class="text-4xl font-bold mb-12 text-center">Über den Autor</h2>
 
         <div class="flex flex-col items-center gap-8 mb-12">
-            <img class="h-64 rounded-xl shadow-md" src="/img/portrait.jpg"></img>
+            <img class="h-64 rounded-xl shadow-md" :src="profilePicUrl"></img>
             <div class="text-center">
                 <h4 class="font-bold text-2xl mb-2">Noah Horlacher</h4>
                 <h5 class="text-xl opacity-70">Schweizer Autor</h5>
