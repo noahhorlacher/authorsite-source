@@ -12,7 +12,7 @@ const { data } = await useAsyncData('git gud', async () => {
     return goodiesData
 })
 
-goodies.value = data.value
+goodies.value = data.value.reverse()
 </script>
 
 <template>

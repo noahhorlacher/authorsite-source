@@ -1,12 +1,17 @@
 <script setup>
-const runtimeConfig = useRuntimeConfig()
-
 const { find, findOne } = useStrapi()
 const books = ref([])
 
 const landingPage = ref()
 const heroImageUrl = ref('')
 const profilePicUrl = ref('')
+
+const heroTitle = ref('')
+const heroDescription = ref('')
+
+const goodreadsUrl = ref('')
+
+const authorVita = ref('')
 
 const { data } = await useAsyncData(
     'getAllBooksIndex',
@@ -43,14 +48,21 @@ landingPage.value = landingPageData.value.data
 
 heroImageUrl.value = landingPageData.value.data.heroimage.formats.large.url
 profilePicUrl.value = '/media-library' + landingPageData.value.data.profilepicture.formats.thumbnail.url
+
+heroTitle.value = landingPageData.value.data.herotitle
+heroDescription.value = landingPageData.value.data.herodescription
+
+authorVita.value = landingPageData.value.data.authorvita
+
+goodreadsUrl.value = landingPageData.value.data.goodreadsurl
 </script>
 
 <template>
     <div class="min-h-screen relative bg-[#cec09b] bg-cover bg-center"
         :style="`background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url('/media-library${heroImageUrl}')`">
         <n-section class="text-white absolute left-0 bottom-32">
-            <h2 class="text-2xl md:text-4xl font-bold mb-4">Willkommen in meiner Welt</h2>
-            <p class="mb-8 max-w-[400px]">Tauche ein in fesselnde Geschichten, die dich in neue Welten transportieren und deine Fantasie entfachen.</p>
+            <h2 class="text-2xl md:text-4xl font-bold mb-4">{{ heroTitle }}</h2>
+            <p class="mb-8 max-w-[400px]">{{ heroDescription }}</p>
             <div class="flex gap-4 flex-col md:flex-row">
                 <n-button variant="white" link="/books">
                     <Icon name="tabler:book" class="mr-4 w-5 h-5"></Icon>
@@ -88,8 +100,7 @@ profilePicUrl.value = '/media-library' + landingPageData.value.data.profilepictu
             </div>
         </div>
         
-        <p>Noah Horlacher ist Fantasy-Autor und Schöpfer der «Leonhard Mondsturm»-Serie. Schon seit seiner Kindheit erforscht er in seinen Geschichten die fantastischen Welten, die in seinem Kopf entstehen. Mit einem einzigartigen Stil verbindet Noah Horlacher phantasievolle Abenteuer mit tiefgründigen, philosophischen Elementen. Seine grössten literarischen Einflüsse sind Hermann Hesse und Walter Moers, deren Werke ihn inspiriert haben, die Leser auf Reisen in aussergewöhnliche Welten mitzunehmen.<br><br>
-            Durch seine Texte möchte er Menschen dazu ermutigen, ihre eigene Fantasie zu entfalten und neue Dimensionen der Vorstellungskraft zu entdecken. Als passionierter Gitarrenspieler und Naturfreund schöpft er seine Kreativität oft aus der Ruhe am Lagerfeuer oder beim Vögelbeobachten. Seine Geschichten richten sich an all jene, die das Abenteuer und die Flucht in fantastische Welten suchen.</p>
+        <p v-html="authorVita"></p>
 
         <div class="flex flex-col mt-12 gap-2">
             <div class="flex gap-x-4 items-center">
@@ -106,7 +117,7 @@ profilePicUrl.value = '/media-library' + landingPageData.value.data.profilepictu
             </div>
         </div>
 
-        <n-button variant="black" class="mt-12" link="https://www.goodreads.com/author/show/52548579.Noah_Horlacher">
+        <n-button variant="black" class="mt-12" :link="goodreadsUrl">
             <Icon name="tabler:link" class="mr-4 w-5 h-5"></Icon>
             <p>goodreads.com</p>
         </n-button>

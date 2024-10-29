@@ -9,7 +9,7 @@ const { data } = await useAsyncData(async () => {
     return quotesData
 })
 
-quotes.value = data.value
+quotes.value = data.value.reverse()
 </script>
 
 <template>

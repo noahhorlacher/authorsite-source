@@ -1,12 +1,24 @@
 <script setup>
+const { findOne } = useStrapi()
+
+const { data: landingPageData } = await useAsyncData('getProfilePic',
+    async () => {
+        const { data } = await findOne('landing-page', {
+            populate: '*'
+        })
+
+        return { data }
+    }
+)
+
 const footerLinks = [
     {
         label: 'Frage stellen',
-        url: 'https://www.goodreads.com/author/52548579.Noah_Horlacher/questions'
+        url: landingPageData.value.data.askquestionurl
     },
     {
         label: 'Goodreads Profil',
-        url: 'https://www.goodreads.com/author/show/52548579.Noah_Horlacher'
+        url: landingPageData.value.data.goodreadsurl
     },
     {
         label: 'Kontakt',

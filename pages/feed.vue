@@ -1,8 +1,10 @@
 <script setup>
-const { find } = useStrapi()
+const { find, findOne } = useStrapi()
 
 const feed = ref(null)
 const shownFeed = ref([])
+
+const askQuestionUrl = ref('')
 
 const { data } = await useAsyncData('get feed', async () => {
     const { data: feedData } = await find('feeds')
@@ -39,6 +41,18 @@ const colors = {
     'Post': 'bg-purple-100 text-purple-800',
     'Q&A': 'bg-green-100 text-green-800',
 }
+
+const { data: landingPageData } = await useAsyncData('getProfilePic',
+    async () => {
+        const { data } = await findOne('landing-page', {
+            populate: '*'
+        })
+
+        return { data }
+    }
+)
+
+askQuestionUrl.value = landingPageData.value.data.askquestionurl
 </script>
 
 <template>
