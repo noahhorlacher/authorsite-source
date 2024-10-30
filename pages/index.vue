@@ -8,6 +8,7 @@ const profilePicUrl = ref('')
 
 const heroTitle = ref('')
 const heroDescription = ref('')
+const heroBackgroundColor = ref('bg-black')
 
 const goodreadsUrl = ref('')
 
@@ -46,6 +47,7 @@ const { data: landingPageData } = await useAsyncData('getProfilePic',
 
 landingPage.value = landingPageData.value.data
 
+console.log('formats', landingPageData.value.data.heroimage.formats)
 heroImageUrl.value = landingPageData.value.data.heroimage.formats.large.url
 profilePicUrl.value = '/media-library' + landingPageData.value.data.profilepicture.formats.small.url
 
@@ -58,7 +60,7 @@ goodreadsUrl.value = landingPageData.value.data.goodreadsurl
 </script>
 
 <template>
-    <div class="min-h-screen relative bg-[#cec09b] bg-cover bg-center"
+    <div :class="['min-h-screen relative bg-cover bg-center bg-fixed', heroBackgroundColor]"
         :style="`background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url('/media-library${heroImageUrl}')`">
         <n-section class="text-white absolute left-0 bottom-32">
             <h2 class="text-2xl md:text-4xl font-bold mb-4">{{ heroTitle }}</h2>
@@ -78,7 +80,7 @@ goodreadsUrl.value = landingPageData.value.data.goodreadsurl
 
     <n-section class="bg-gray-100">
         <h2 class="text-4xl font-bold mb-4 text-center">Spotlight</h2>
-        <div class="flex justify-center py-16 gap-16 flex-wrap grow-0 shrink-0">
+        <div class="flex justify-center py-16 gap-16 md:gap-32 flex-wrap grow-0 shrink-0">
             <n-book v-if="books" v-for="book in books.slice(0, 3)" :book="book" />
         </div>
         <div class="w-auto flex justify-center" v-if="books && books.length > 3">

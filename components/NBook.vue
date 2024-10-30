@@ -24,7 +24,7 @@ defineProps({
         </div>
 
 
-        <h3 class="text-black font-bold text-2xl opacity-70 mb-1">{{ book.title }}</h3>
+        <h3 class="text-black font-bold text-xl md:text-3xl opacity-70 mb-1 md:mb-3">{{ book.title }}</h3>
         <h4 v-if="book.subtitle" class="text-black font-semibold text-lg opacity-70 mb-1">{{ book.subtitle }}</h4>
         <p v-if="book.seriesDescription" class="mb-1 text-sm opacity-70">{{ book.seriesDescription }}</p>
         
@@ -37,7 +37,7 @@ defineProps({
         </div>
         
         <div class="pt-8 flex gap-4 flex-wrap">
-            <n-button :link="'/books/' + book.documentId" variant="black-outline">
+            <n-button :link="'/books/' + book.documentId" variant="outline">
                 <Icon class="mr-4 w-5 h-5" name="tabler:eyeglass" />
                 <p>Details</p>
             </n-button>

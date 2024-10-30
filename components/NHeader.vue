@@ -4,7 +4,6 @@ const route = useRoute()
 const links = [
   { url: '/', text: 'Home' },
   { url: '/books', text: 'Bücher' },
-  { url: 'https://www.etsy.com/ch/shop/NoahHorlacherStore', text: 'Merchandise' },
   { url: '/feed', text: 'Feed' },
   { url: '/quotes', text: 'Zitate' },
   { url: '/contact', text: 'Kontakt' },
@@ -36,6 +35,11 @@ function toggleMobileMenu() {
         >
           {{ link.text }}
         </nuxt-link>
+        <n-button variant="outline" class="ml-4 flex items-center" link="https://www.etsy.com/ch/shop/NoahHorlacherStore">
+          <Icon name="tabler:building-store" class="w-5 h-5 mr-2" />
+          <p>Fan Shop</p>
+        </n-button>
+
       </nav>
   
       <!-- Mobile Links (Checkbox controlled) -->
@@ -49,6 +53,10 @@ function toggleMobileMenu() {
         >
           {{ link.text }}
         </nuxt-link>
+        <n-button variant="outline" class="mt-8 flex items-center" link="https://www.etsy.com/ch/shop/NoahHorlacherStore">
+          <Icon name="tabler:building-store" class="w-5 h-5 mr-2" />
+          <p>Fan Shop</p>
+        </n-button>
       </div>
   
       <!-- Mobile Menu Icon -->
