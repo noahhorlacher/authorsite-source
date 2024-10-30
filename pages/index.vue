@@ -47,7 +47,7 @@ const { data: landingPageData } = await useAsyncData('getProfilePic',
 landingPage.value = landingPageData.value.data
 
 heroImageUrl.value = landingPageData.value.data.heroimage.formats.large.url
-profilePicUrl.value = '/media-library' + landingPageData.value.data.profilepicture.formats.thumbnail.url
+profilePicUrl.value = '/media-library' + landingPageData.value.data.profilepicture.formats.small.url
 
 heroTitle.value = landingPageData.value.data.herotitle
 heroDescription.value = landingPageData.value.data.herodescription
