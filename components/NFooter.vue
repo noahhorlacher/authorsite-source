@@ -13,6 +13,10 @@ const { data: landingPageData } = await useAsyncData('getProfilePic',
 
 const footerLinks = [
     {
+        label: 'Merchandise Shop',
+        url: 'https://www.etsy.com/ch/shop/NoahHorlacherStore'
+    },
+    {
         label: 'Frage stellen',
         url: landingPageData.value.data.askquestionurl
     },

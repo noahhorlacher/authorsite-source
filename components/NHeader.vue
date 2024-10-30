@@ -4,9 +4,9 @@ const route = useRoute()
 const links = [
   { url: '/', text: 'Home' },
   { url: '/books', text: 'Bücher' },
+  { url: 'https://www.etsy.com/ch/shop/NoahHorlacherStore', text: 'Merchandise' },
   { url: '/feed', text: 'Feed' },
   { url: '/quotes', text: 'Zitate' },
-  { url: '/goodies', text: 'Goodies' },
   { url: '/contact', text: 'Kontakt' },
 ]
 
