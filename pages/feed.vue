@@ -79,7 +79,7 @@ askQuestionUrl.value = landingPageData.value.data.askquestionurl
                 </div>
 
                 <h3 class="text-lg font-bold mb-4">{{ post.title }}</h3>
-                <p class="whitespace-pre-line mb-6">{{ post.text }}</p>
+                <p class="whitespace-pre-line mb-6" v-html="post.text"></p>
             </article>
         </div>
     </n-section>
