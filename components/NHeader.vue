@@ -15,15 +15,33 @@ function toggleMobileMenu() {
   mobileMenuOpen.value = !mobileMenuOpen.value
 }
 
-const headerTransparent = ref(true)
+const headerTransparent = ref(route.path === '/')
 
 function headerIsHomeAndTransparent() {
-  headerTransparent.value =  route.path == '/' && window.scrollY == 0
+  // Only make transparent on the exact home page, and when scroll is at the top
+  headerTransparent.value = route.path === '/' && window.scrollY === 0
 }
 
-onMounted(() => document.addEventListener('scroll', headerIsHomeAndTransparent))
-onUnmounted(() => document.removeEventListener('scroll', headerIsHomeAndTransparent))
-watch(() => route.path, headerIsHomeAndTransparent)
+// Add the scroll and route change listeners
+onMounted(() => {
+  document.addEventListener('scroll', headerIsHomeAndTransparent)
+  headerIsHomeAndTransparent()  // Initial check on mount
+})
+
+// Clean up the scroll event listener on unmount
+onUnmounted(() => {
+  document.removeEventListener('scroll', headerIsHomeAndTransparent)
+})
+
+// Watch for route changes and reset scroll position
+watch(() => route.path, () => {
+  // Scroll to top on route change
+  window.scrollTo(0, 0)
+  
+  // Re-run transparency check after scroll reset
+  headerIsHomeAndTransparent()
+})
+
 </script>
 
 <template>

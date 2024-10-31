@@ -46,6 +46,12 @@ const bookData = await useAsyncData('getBookById', async () => {
 }, { deep: true })
 
 book.value = bookData.data.value
+
+const coverFlipped = ref(false)
+
+function flipCover(){
+    coverFlipped.value = !coverFlipped.value
+}
 </script>
 
 <template>
@@ -78,7 +84,7 @@ book.value = bookData.data.value
                 </div>
 
                 <!-- Book Short Info -->
-                <div :class="['max-w-[400px] mt-8 bg-gray-100 shadow-xl rounded-xl overflow-hidden pt-36 pb-10 -translate-y-32 -z-10 mx-auto px-7 py-5']">
+                <div class="max-w-[400px] mt-8 bg-gray-100 shadow-xl rounded-xl overflow-hidden pt-36 pb-10 -translate-y-32 -z-10 mx-auto px-7 py-5">
                     <h1 class="text-2xl md:text-4xl text-center font-bold mb-2 opacity-90">{{ book.title }}</h1>
                     <h2 class="mb-6 text-center text-lg opacity-80">{{ book.subtitle }}</h2>
                     
