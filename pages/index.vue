@@ -70,8 +70,8 @@ goodreadsUrl.value = landingPageData.value.data.goodreadsurl
                     <p>Bücher</p>
                 </n-button>
                 <n-button variant="white-outline" link="/contact">
-                    <Icon name="tabler:mail" class="mr-4 w-5 h-5"></Icon>
-                    <p>Kontakt</p>
+                    <Icon name="tabler:building-store" class="mr-4 w-5 h-5"></Icon>
+                    <p>Merchandise</p>
                 </n-button>
             </div>
         </n-section>
