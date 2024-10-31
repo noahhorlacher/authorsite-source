@@ -17,8 +17,6 @@ function toggleMobileMenu() {
 
 const headerTransparent = ref(true)
 
-console.log('route', route.path)
-
 function headerIsHomeAndTransparent() {
   headerTransparent.value =  route.path == '/' && window.scrollY == 0
 }

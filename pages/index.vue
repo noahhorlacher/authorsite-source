@@ -69,7 +69,7 @@ goodreadsUrl.value = landingPageData.value.data.goodreadsurl
                     <Icon name="tabler:book" class="mr-4 w-5 h-5"></Icon>
                     <p>Bücher</p>
                 </n-button>
-                <n-button variant="white-outline" link="/contact">
+                <n-button variant="white-outline" link="https://www.etsy.com/ch/shop/NoahHorlacherStore">
                     <Icon name="tabler:building-store" class="mr-4 w-5 h-5"></Icon>
                     <p>Merchandise</p>
                 </n-button>
