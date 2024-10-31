@@ -51,47 +51,50 @@ book.value = bookData.data.value
 <template>
     <div v-if="book" class="pb-16">
         <!-- Hero -->
-        <n-section :class="['relative !pb-36 flex flex-col items-stretch', book.darkBackground ? 'text-white' : 'text-black']">
+        <n-section :class="['relative !pb-36 flex flex-col items-stretch text-black']">
             <!-- Background -->
             <div class="absolute bg-fixed bg-gray-100 -z-10 w-full h-full top-0 left-0 bg-cover bg-center" :style="{ backgroundImage: `url(${runtimeConfig.public.mediaUrl + book.backgroundImage.formats.large.url})` }">
             </div>
 
-            <!-- Cover -->
-            <div class="flex justify-center w-full select-none">
-                <div v-if="book.coverFront && book.coverBack"
-                    class="relative mb-12 group mx-auto mt-12 w-auto rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow"
-                    @click="flipBook">
-                    <img class="max-h-[700px]" :src="runtimeConfig.public.mediaUrl + book.coverFront.formats.small.url" alt="Front Cover" />
-                    <img class="max-h-[700px] absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100"
-                        :src="runtimeConfig.public.mediaUrl + book.coverBack.formats.small.url" alt="Back Cover" />
+            <div class="relative rounded-xl -mb-32 mt-16 flex flex-col items-stretch">
+                 <!-- Cover -->
+                <div class="flex justify-center w-full select-none">
+                    <div v-if="book.coverFront && book.coverBack"
+                        class="relative group w-auto rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow"
+                        @click="flipBook">
+                        <img class="max-h-[700px]" :src="runtimeConfig.public.mediaUrl + book.coverFront.formats.small.url" alt="Front Cover" />
+                        <img class="max-h-[700px] absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100"
+                            :src="runtimeConfig.public.mediaUrl + book.coverBack.formats.small.url" alt="Back Cover" />
+                    </div>
+
+                    <div v-else class="relative text-center max-h-[700px] w-full">
+                        <img class="shadow-xl mx-auto rounded-xl mb-12 max-h-[700px] hover:shadow-2xl transition-shadow"
+                            src="/img/book_placeholder.png" />
+                        <div v-if="book.workInProgress" class="absolute text-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-black">
+                            <Icon name="tabler:clock" class="w-8 h-8" />
+                            <p>Work in progress</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div v-else class="relative text-center max-h-[700px] w-full mt-12 mb-16">
-                    <img class="shadow-xl mx-auto rounded-xl mb-12 max-h-[700px] hover:shadow-2xl transition-shadow"
-                        src="/img/book_placeholder.png" />
-                    <div v-if="book.workInProgress" class="absolute text-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-black">
-                        <Icon name="tabler:clock" class="w-8 h-8" />
-                        <p>Work in progress</p>
+                <!-- Book Short Info -->
+                <div :class="['max-w-[400px] mt-8 bg-gray-100 shadow-xl rounded-xl overflow-hidden pt-36 pb-10 -translate-y-32 -z-10 mx-auto px-7 py-5']">
+                    <h1 class="text-2xl md:text-4xl text-center font-bold mb-2 opacity-90">{{ book.title }}</h1>
+                    <h2 class="mb-6 text-center text-lg opacity-80">{{ book.subtitle }}</h2>
+                    
+                    <div v-if="book.publishedDate" class="flex items-center gap-2 justify-center opacity-90">
+                        <Icon name="tabler:calendar" class="w-5 h-5" />
+                        <h3 class="opacity-70 font-bold text-center">{{ formatDate(book.publishedDate) }}</h3>
+                    </div>
+                    
+                    <n-rating v-if="!book.workInProgress" :rating="book.rating" class="text-center mt-8 opacity-80" />
+                    <div v-if="book.workInProgress" class="flex flex-row gap-4 items-center justify-center mt-2 opacity-90">
+                        <Icon name="tabler:info-circle" />
+                        <p>An diesem Buch wird gearbeitet.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Book Short Info -->
-            <div :class="['bg-opacity-30 backdrop-blur-md rounded-xl overflow-hidden mx-auto px-7 py-5', book.darkBackground ? 'bg-black' : 'bg-white']">
-                <h1 class="text-2xl md:text-4xl text-center font-bold mb-2 opacity-90">{{ book.title }}</h1>
-                <h2 class="mb-6 text-center text-lg opacity-80">{{ book.subtitle }}</h2>
-                
-                <div v-if="book.publishedDate" class="flex items-center gap-2 justify-center opacity-90">
-                    <Icon name="tabler:calendar" class="w-5 h-5" />
-                    <h3 class="opacity-70 font-bold text-center">{{ formatDate(book.publishedDate) }}</h3>
-                </div>
-                
-                <n-rating v-if="!book.workInProgress" :rating="book.rating" class="text-center mt-8 opacity-80" />
-                <div v-if="book.workInProgress" class="flex flex-row gap-4 items-center justify-center mt-2 opacity-90">
-                    <Icon name="tabler:info-circle" />
-                    <p>An diesem Buch wird gearbeitet.</p>
-                </div>
-            </div>
         </n-section>
 
         <!-- Description -->
