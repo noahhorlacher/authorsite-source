@@ -1,23 +1,23 @@
 <script setup>
-const { find } = useStrapi()
+const { getItems } = useDirectusItems()
+
 const books = ref([])
 
 const { data } = await useAsyncData(
-    'getAllBooksIndex',
     async () => {
-            const { data } = await find('books', {
-                populate: '*'
-            })
-            
-            return { data: data }
-        },
+        const items = await getItems({
+            collection: 'books',
+        })
+
+        return items
+    }
 )
 
-books.value = sortBooks(data.value.data)
+books.value = sortBooks(data.value)
 
 function sortBooks(booksData){
-    const wipBooks = booksData.filter(b => b.wip)
-    const finishedBooks = booksData.filter(b => !b.wip)
+    const wipBooks = booksData.filter(b => b.workInProgress)
+    const finishedBooks = booksData.filter(b => !b.workInProgress)
     const sortedFinishedBooks = finishedBooks.sort((a, b) => new Date(b.published) - new Date(a.published))
 
     return [...sortedFinishedBooks, ...wipBooks]

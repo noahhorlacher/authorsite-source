@@ -1,29 +1,29 @@
 <script setup>
-const { findOne } = useStrapi()
+// const { findOne } = useStrapi()
 
-const { data: landingPageData } = await useAsyncData('getProfilePic',
-    async () => {
-        const { data } = await findOne('landing-page', {
-            populate: '*'
-        })
+// const { data: landingPageData } = await useAsyncData('getProfilePic',
+//     async () => {
+//         const { data } = await findOne('landing-page', {
+//             populate: '*'
+//         })
 
-        return { data }
-    }
-)
+//         return { data }
+//     }
+// )
 
 const footerLinks = [
     {
         label: 'Merchandise Shop',
         url: 'https://www.etsy.com/ch/shop/NoahHorlacherStore'
     },
-    {
-        label: 'Frage stellen',
-        url: landingPageData.value.data.askquestionurl
-    },
-    {
-        label: 'Goodreads Profil',
-        url: landingPageData.value.data.goodreadsurl
-    },
+    // {
+    //     label: 'Frage stellen',
+    //     url: landingPageData.value.data.askquestionurl
+    // },
+    // {
+    //     label: 'Goodreads Profil',
+    //     url: landingPageData.value.data.goodreadsurl
+    // },
     {
         label: 'Kontakt',
         url: '/contact'
@@ -37,6 +37,6 @@ const footerLinks = [
             <nuxt-link class="underline" :to="link.url" v-for="link in footerLinks">{{ link.label }}</nuxt-link>
         </div>
 
-        <p class="text-sm mt-16">© 2024 Noah Horlacher</p>
+        <p class="text-sm mt-16">© 2025 Noah Horlacher</p>
     </footer>
 </template>

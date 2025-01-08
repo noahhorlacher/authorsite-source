@@ -1,31 +1,31 @@
 <script setup>
-const { find, findOne } = useStrapi()
+const { getItems, getSingletonItem } = useDirectusItems()
+
 const books = ref([])
-
-const landingPage = ref()
-const heroImageUrl = ref('')
-const profilePicUrl = ref('')
-
-const heroTitle = ref('')
-const heroDescription = ref('')
-const heroBackgroundColor = ref('bg-black')
-
-const goodreadsUrl = ref('')
-
-const authorVita = ref('')
-
-const { data } = await useAsyncData(
-    'getAllBooksIndex',
+const { data: bookData } = await useAsyncData(
     async () => {
-            const { data } = await find('books', {
-                populate: '*'
-            })
-            
-            return { data }
-        },
+        const items = await getItems({
+            collection: 'books',
+        })
+
+        return items
+    }
 )
 
-books.value = sortBooks(data.value.data)
+books.value = sortBooks(bookData.value)
+
+
+const { data: heroContent } = await useAsyncData(
+    async () => {
+            const data = await getSingletonItem({
+                collection: 'herocontent',
+            })
+
+            return data
+        }
+)
+
+const authorVita = `Noah Horlacher ist Fantasy-Autor und Schöpfer der «Leonhard Mondsturm»-Serie. Schon seit seiner Kindheit erforscht er in seinen Geschichten die fantastischen Welten, die in seinem Kopf entstehen. Mit einem einzigartigen Stil verbindet Noah Horlacher phantasievolle Abenteuer mit tiefgründigen, philosophischen Elementen. Seine grössten literarischen Einflüsse sind Hermann Hesse und Walter Moers, deren Werke ihn inspiriert haben, die Leser auf Reisen in aussergewöhnliche Welten mitzunehmen.<br><br>Durch seine Texte möchte er Menschen dazu ermutigen, ihre eigene Fantasie zu entfalten und neue Dimensionen der Vorstellungskraft zu entdecken. Als passionierter Gitarrenspieler und Naturfreund schöpft er seine Kreativität oft aus der Ruhe am Lagerfeuer oder beim Vögelbeobachten. Seine Geschichten richten sich an all jene, die das Abenteuer und die Flucht in fantastische Welten suchen.`
 
 function sortBooks(booksData){
     const wipBooks = booksData.filter(b => b.wip)
@@ -35,35 +35,13 @@ function sortBooks(booksData){
     return [...sortedFinishedBooks, ...wipBooks]
 }
 
-const { data: landingPageData } = await useAsyncData('getProfilePic',
-    async () => {
-        const { data } = await findOne('landing-page', {
-            populate: '*'
-        })
-
-        return { data }
-    }
-)
-
-landingPage.value = landingPageData.value.data
-
-heroImageUrl.value = landingPageData.value.data.heroimage.formats.large.url
-profilePicUrl.value = '/media-library' + landingPageData.value.data.profilepicture.formats.small.url
-
-heroTitle.value = landingPageData.value.data.herotitle
-heroDescription.value = landingPageData.value.data.herodescription
-
-authorVita.value = landingPageData.value.data.authorvita
-
-goodreadsUrl.value = landingPageData.value.data.goodreadsurl
 </script>
 
 <template>
-    <div :class="['min-h-screen relative bg-cover bg-center bg-fixed', heroBackgroundColor]"
-        :style="`background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url('/media-library${heroImageUrl}')`">
+    <div class="min-h-screen relative bg-cover bg-center bg-black"
+        :style="`background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url('/img/hero_image.jpg')`">
         <n-section class="text-white absolute left-0 bottom-32">
-            <h2 class="text-2xl md:text-4xl font-bold mb-4">{{ heroTitle }}</h2>
-            <p class="mb-8 max-w-[400px]">{{ heroDescription }}</p>
+            <div class="mb-8 max-w-[400px]" v-html="heroContent.content"></div>
             <div class="flex gap-4 flex-col md:flex-row">
                 <n-button variant="white" link="/books">
                     <Icon name="tabler:book" class="mr-4 w-5 h-5"></Icon>
@@ -94,13 +72,14 @@ goodreadsUrl.value = landingPageData.value.data.goodreadsurl
         <h2 class="text-4xl font-bold mb-12 text-center">Über den Autor</h2>
 
         <div class="flex flex-col items-center gap-8 mb-12">
-            <img class="h-64 rounded-xl shadow-md" :src="profilePicUrl"></img>
+            <img class="h-64 rounded-xl shadow-md" src="/img/portrait.jpg"></img>
             <div class="text-center">
                 <h4 class="font-bold text-2xl mb-2">Noah Horlacher</h4>
                 <h5 class="text-xl opacity-70">Schweizer Autor</h5>
             </div>
         </div>
         
+        <!-- Vita -->
         <p v-html="authorVita"></p>
 
         <div class="flex flex-col mt-12 gap-2">
@@ -117,10 +96,5 @@ goodreadsUrl.value = landingPageData.value.data.goodreadsurl
                 <p class="mr-4">Philosophische Hinterfragungen</p>
             </div>
         </div>
-
-        <n-button variant="black" class="mt-12" :link="goodreadsUrl">
-            <Icon name="tabler:link" class="mr-4 w-5 h-5"></Icon>
-            <p>goodreads.com</p>
-        </n-button>
     </n-section>
 </template>

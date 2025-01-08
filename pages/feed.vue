@@ -1,23 +1,27 @@
 <script setup>
-const { find, findOne } = useStrapi()
+const { getItems } = useDirectusItems()
 
-const feed = ref(null)
+const feed = ref([])
 const shownFeed = ref([])
 
 const askQuestionUrl = ref('')
 
-const { data } = await useAsyncData('get feed', async () => {
-    const { data: feedData } = await find('feeds')
+const { data } = await useAsyncData(
+    async () => {
+        const data = await getItems({
+            collection: 'posts',
+        })
 
-    return feedData
-})
+        return data
+    }
+)
 
 feed.value = data.value
 
 onMounted(async () => {
-    feed.value = [...feed.value].sort((a, b) => new Date(b.date) - new Date(a.date))
+    feed.value = [...feed.value].sort((a, b) => new Date(b.date_created) - new Date(a.date_created))
 
-    shownFeed.value = [...feed.value].sort((a, b) => new Date(b.date) - new Date(a.date))
+    shownFeed.value = [...feed.value].sort((a, b) => new Date(b.date_created) - new Date(a.date_created))
 })
 
 const filter = ref(null)
@@ -38,21 +42,21 @@ function toggleFilter(val){
 }
 
 const colors = {
-    'Post': 'bg-purple-100 text-purple-800',
+    'Update': 'bg-purple-100 text-purple-800',
     'Q&A': 'bg-green-100 text-green-800',
 }
 
-const { data: landingPageData } = await useAsyncData('getProfilePic',
-    async () => {
-        const { data } = await findOne('landing-page', {
-            populate: '*'
-        })
+// const { data: landingPageData } = await useAsyncData('getProfilePic',
+//     async () => {
+//         const { data } = await findOne('landing-page', {
+//             populate: '*'
+//         })
 
-        return { data }
-    }
-)
+//         return { data }
+//     }
+// )
 
-askQuestionUrl.value = landingPageData.value.data.askquestionurl
+// askQuestionUrl.value = landingPageData.value.data.askquestionurl
 </script>
 
 <template>
@@ -65,7 +69,7 @@ askQuestionUrl.value = landingPageData.value.data.askquestionurl
             <h3>Filter</h3>
         </div>
         <div class="flex justify-center mb-16 gap-4">
-            <div v-for="filterType in ['Post', 'Q&A']" @click="toggleFilter(filterType)" :class="['px-4 py-1 rounded-lg cursor-pointer transition-all hover:opacity-90', filter == filterType ? '' : 'opacity-50', colors[filterType]]">{{ filterType }}</div>
+            <div v-for="filterType in ['Update', 'Q&A']" @click="toggleFilter(filterType)" :class="['px-4 py-1 rounded-lg cursor-pointer transition-all hover:opacity-90', filter == filterType ? '' : 'opacity-50', colors[filterType]]">{{ filterType }}</div>
         </div>
         
         <div class="flex flex-col items-center gap-8">
@@ -73,13 +77,13 @@ askQuestionUrl.value = landingPageData.value.data.askquestionurl
                 <div class="flex flex-row justify-between items-center mb-8">
                     <div class="flex flex-row text-sm items-center gap-2 opacity-70">
                         <Icon name="tabler:calendar" class="w-5 h-5" />
-                        <p>{{ formatDate(post.date) }}</p>
+                        <p>{{ formatDate(post.date_created) }}</p>
                     </div>
                     <p :class="['rounded-md inline-block text-sm px-2 py-1', colors[post.type]]">{{ post.type }}</p>
                 </div>
 
-                <h3 class="text-lg font-bold mb-4">{{ post.title }}</h3>
-                <p class="whitespace-pre-line mb-6" v-html="post.text"></p>
+                <h3 class="text-2xl font-bold mb-4">{{ post.title }}</h3>
+                <p class="whitespace-pre-line mb-6" v-html="post.content"></p>
             </article>
         </div>
     </n-section>

@@ -103,7 +103,7 @@ watch(() => route.path, () => {
         <Icon
           v-else
           name="tabler:x"
-          class="h-6 w-6"
+          class="h-6 w-6 text-black"
         />
       </div>
     </header>
