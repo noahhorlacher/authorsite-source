@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     'nuxt-headlessui',
-    '@nuxtjs/strapi',
     'nuxt-directus',
   ],
   headlessui: {

@@ -1,6 +1,4 @@
 <script setup>
-const { getThumbnail } = useDirectusFiles()
-
 defineProps({
     book: Object
 })
@@ -9,9 +7,9 @@ defineProps({
 <template>
     <div class="max-w-xs grow-0 shrink-0">
 
-        <div v-if="book.cover_front && book.cover_back" class="relative mb-12 group rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow">
-            <img :src="getThumbnail(book.cover_front)" alt="Front Cover" class="w-full h-full object-cover" />
-            <img :src="getThumbnail(book.cover_back)" alt="Back Cover" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity group-hover:opacity-100" />
+        <div v-if="book.hasCover" class="relative mb-12 group rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow">
+            <img :src="'/covers/' + book.id + '/front.jpg'" alt="Front Cover" class="w-full h-full object-cover" />
+            <img :src="'/covers/' + book.id + '/back.jpg'" alt="Back Cover" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity group-hover:opacity-100" />
         </div>
         <div v-else>
             <div class="relative">

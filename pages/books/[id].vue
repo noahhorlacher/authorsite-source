@@ -1,6 +1,5 @@
 <script setup>
 const { getItemById, getItems } = useDirectusItems()
-const { getThumbnail } = useDirectusFiles()
 
 const route = useRoute()
 const id = route.params.id
@@ -9,14 +8,11 @@ const book = ref({})
 const buylinks = ref([])
 
 const { data } = await useAsyncData(
-    async () => {
-        const bookItem = await getItemById({
+    async () => 
+        await getItemById({
             collection: 'books',
             id: id
         })
-
-        return bookItem
-    }
 )
 
 book.value = data.value
@@ -61,12 +57,12 @@ buylinks.value = buylinksData.value
             <div class="relative rounded-xl -mb-32 mt-16 flex flex-col items-stretch">
                 <!-- Cover -->
                 <div class="flex justify-center w-full select-none">
-                    <div v-if="book.cover_front && book.cover_back"
+                    <div v-if="book.hasCover"
                         class="relative group w-auto rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow"
                         @click="flipBook">
-                        <img class="max-h-[700px]" :src="getThumbnail(book.cover_front)" alt="Front Cover" />
+                        <img class="max-h-[700px]" :src="'/covers/' + book.id + '/front.jpg'" alt="Front Cover" />
                         <img class="max-h-[700px] absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100"
-                            :src="getThumbnail(book.cover_back)" alt="Back Cover" />
+                            :src="'/covers/' + book.id + '/back.jpg'" alt="Back Cover" />
                     </div>
 
                     <div v-else class="relative text-center max-h-[700px] w-full">

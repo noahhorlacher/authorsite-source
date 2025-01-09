@@ -33,4 +33,9 @@ html {
 * {
   letter-spacing: 0.03rem;
 }
+
+.bluelink a {
+  text-decoration: underline;
+  color: blue;
+}
 </style>

@@ -83,7 +83,7 @@ const colors = {
                 </div>
 
                 <h3 class="text-2xl font-bold mb-4">{{ post.title }}</h3>
-                <p class="whitespace-pre-line mb-6" v-html="post.content"></p>
+                <p class="whitespace-pre-line mb-6 bluelink" v-html="post.content"></p>
             </article>
         </div>
     </n-section>
