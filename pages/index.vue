@@ -3,26 +3,17 @@ const { getItems, getSingletonItem } = useDirectusItems()
 
 const books = ref([])
 const { data: bookData } = await useAsyncData(
-    async () => {
-        const items = await getItems({
+        async () => await getItems({
             collection: 'books',
         })
-
-        return items
-    }
 )
-
 books.value = sortBooks(bookData.value)
 
-
 const { data: heroContent } = await useAsyncData(
-    async () => {
-            const data = await getSingletonItem({
-                collection: 'herocontent',
-            })
-
-            return data
-        }
+    async () => 
+        await getSingletonItem({
+            collection: 'herocontent',
+        })
 )
 
 const authorVita = `Noah Horlacher ist Fantasy-Autor und Schöpfer der «Leonhard Mondsturm»-Serie. Schon seit seiner Kindheit erforscht er in seinen Geschichten die fantastischen Welten, die in seinem Kopf entstehen. Mit einem einzigartigen Stil verbindet Noah Horlacher phantasievolle Abenteuer mit tiefgründigen, philosophischen Elementen. Seine grössten literarischen Einflüsse sind Hermann Hesse und Walter Moers, deren Werke ihn inspiriert haben, die Leser auf Reisen in aussergewöhnliche Welten mitzunehmen.<br><br>Durch seine Texte möchte er Menschen dazu ermutigen, ihre eigene Fantasie zu entfalten und neue Dimensionen der Vorstellungskraft zu entdecken. Als passionierter Gitarrenspieler und Naturfreund schöpft er seine Kreativität oft aus der Ruhe am Lagerfeuer oder beim Vögelbeobachten. Seine Geschichten richten sich an all jene, die das Abenteuer und die Flucht in fantastische Welten suchen.`
